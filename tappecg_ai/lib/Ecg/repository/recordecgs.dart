@@ -22,10 +22,7 @@ class RecordecgsRepository{
     }
     );
     var items = json.decode(response.body);
-    print(items);
-    print("clase");
-    var recordecgs = items.map((item) => Recordecgs.fromMap(item)).toList();
-    print(recordecgs);
+    var recordecgs = await items.map((item) => Recordecgs.fromMap(item)).toList().cast<Recordecgs>();
 
     return recordecgs;
   }
