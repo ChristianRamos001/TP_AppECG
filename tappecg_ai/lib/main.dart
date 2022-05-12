@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 
+void callbackDispatcher(){
+  Workmanager.executeTask((taskName, inputData) async{
+  LocalNotification.Initializer();
+  LocalNotification.ShowOneTimeNotification(DateTime.now());
+    return Future.value(true);
+  });
+}
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Workmanager.initialize(callbackDispatcher);
+  Workmanager.registerPeriodicTask("test_workertask", "test_workertask",
+      frequency:Duration(minutes:15),
+      inputData:{"data1":"value1","data2":"value2"});
+
   runApp(const MyApp());
 }
 

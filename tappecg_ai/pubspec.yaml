@@ -35,6 +35,8 @@ dependencies:
   polar: ^1.15.0
   fl_chart: ^0.40.2
   intl: ^0.17.0
+  workmanager:
+  flutter_local_notifications:
 
 dev_dependencies:
   flutter_test:
