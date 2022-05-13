@@ -23,7 +23,7 @@ class _Home extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> widgetsChildren = [
     ListResults(),
-    EcgPartialView(),
+    // EcgPartialView(),
     SendEcg(),
     SendEcg(),
   ];
