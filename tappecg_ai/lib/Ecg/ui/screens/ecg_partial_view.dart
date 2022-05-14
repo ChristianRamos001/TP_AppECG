@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
 import 'dart:math';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class EcgPartialView extends StatefulWidget {
   EcgPartialView({Key? key}) : super(key: key);
@@ -17,7 +19,6 @@ class EcgPartialView extends StatefulWidget {
 }
 
 class _EcgPartialView extends State<EcgPartialView> {
-
   final _limitCount = 100;
   final _points = <FlSpot>[];
   double _xValue = 0;
@@ -91,19 +92,19 @@ class _EcgPartialView extends State<EcgPartialView> {
     });
   }
 
-  void sentToCloud() async{
+  void sentToCloud() async {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
     Random random = Random();
     int randomNumber = random.nextInt(2);
-    List<String> listNumber = ['11','12','16'];
+    List<String> listNumber = ['11', '12', '16'];
 
-      _sendECGModel = SendECG(listNumber[randomNumber], _joinedECGdata, DateTime.now());
-      var response = await respositoryECG.postECGData(_sendECGModel);
-      //bool correct = true;
-      print(response.toString());
-
-    }
+    _sendECGModel =
+        SendECG(listNumber[randomNumber], _joinedECGdata, DateTime.now());
+    var response = await respositoryECG.postECGData(_sendECGModel);
+    //bool correct = true;
+    print(response.toString());
+  }
 
   LineChartBarData line() {
     return LineChartBarData(
@@ -158,7 +159,9 @@ class _EcgPartialView extends State<EcgPartialView> {
                         color: Colors.black54,
                         borderRadius: BorderRadius.circular(2.0)),
                     child: TextButton(
-                      onPressed: () => startECG(),
+                      onPressed: () => {
+                        startECG(),
+                      },
                       child: Text(
                         "Empezar",
                         style: TextStyle(color: Colors.white),
@@ -222,6 +225,4 @@ class _EcgPartialView extends State<EcgPartialView> {
     polar.disconnectFromDevice(identifier);
     super.dispose();
   }
-
-
 }
