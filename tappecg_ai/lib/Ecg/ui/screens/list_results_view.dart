@@ -85,7 +85,7 @@ class ListResultsState extends State<ListResults> {
                                                 ),
                                         ),
                                     subtitle: 
-                                        Text(recordecgs[i].subLabel,
+                                        Text(recordecgs[i].subLabel+ " / " + recordecgs[i].readDate.substring(0, 16) ,
                                         style: TextStyle(
                                                   fontWeight: FontWeight.bold, fontSize: 15,
                                                   color: Colors.grey

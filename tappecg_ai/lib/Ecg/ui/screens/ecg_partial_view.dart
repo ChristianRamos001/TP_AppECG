@@ -74,6 +74,7 @@ class _EcgPartialView extends State<EcgPartialView> {
             print('ECG data: ${e.samples}');
             _joinedECGdata.addAll(e.samples);
           });
+
         });
       }
     });
@@ -94,11 +95,8 @@ class _EcgPartialView extends State<EcgPartialView> {
   void sentToCloud() async{
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
-    Random random = Random();
-    int randomNumber = random.nextInt(2);
-    List<String> listNumber = ['11','12','16'];
 
-      _sendECGModel = SendECG(listNumber[randomNumber], _joinedECGdata, DateTime.now());
+      _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
       var response = await respositoryECG.postECGData(_sendECGModel);
       //bool correct = true;
       print(response.toString());
