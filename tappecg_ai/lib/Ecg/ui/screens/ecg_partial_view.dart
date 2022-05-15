@@ -17,8 +17,6 @@ class EcgPartialView extends StatefulWidget {
     // TODO: implement createState
     throw UnimplementedError();
   }
-
-
 }
 
 

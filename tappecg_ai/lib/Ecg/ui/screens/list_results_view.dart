@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tappecg_ai/Ecg/model/list_results_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/recordecgs.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/ecg_detail.dart';
 import 'package:tappecg_ai/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
@@ -54,49 +55,52 @@ class ListResultsState extends State<ListResults> {
               itemCount: recordecgs == null ? 0 : recordecgs.length,
               itemBuilder: (BuildContext context, int i){
                 return Center(
-                  child: Card(
-                    child: InkWell(
-                      splashColor: Colors.blue.withAlpha(30),
-                      child: Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                SfCartesianChart(
-                                  borderColor: Color(0xFF00BCD4),
-                                  borderWidth: 2,
-                                  margin: EdgeInsets.all(15),
-                                  palette: <Color>[
-                                  Color(0xFF4881B9)
-                                  ],
-                                  series: <ChartSeries>[
-                                    LineSeries<double, double>(
-                                        dataSource: recordecgs[i].data[0].dataECG,
-                                        xValueMapper: (double item, _) => _.toDouble(),
-                                        yValueMapper: (double item, _) => item)
-                                  ],
-                                      ),
-                                ListTile(
-                                    title:
-                                        Text(recordecgs[i].labelResult,
-                                        style: TextStyle(
-                                                  fontWeight: FontWeight.bold, fontSize: 25,
-                                                  color: Color.fromRGBO(208, 218, 40, 1)
-                                                ),
+                  child: GestureDetector(
+                    onTap:() => goDetails(recordecgs[i]),
+                    child: Card(
+                      child: InkWell(
+                        splashColor: Colors.blue.withAlpha(30),
+                        child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  SfCartesianChart(
+                                    borderColor: Color(0xFF00BCD4),
+                                    borderWidth: 2,
+                                    margin: EdgeInsets.all(15),
+                                    palette: <Color>[
+                                    Color(0xFF4881B9)
+                                    ],
+                                    series: <ChartSeries>[
+                                      LineSeries<double, double>(
+                                          dataSource: recordecgs[i].data[0].dataECG,
+                                          xValueMapper: (double item, _) => _.toDouble(),
+                                          yValueMapper: (double item, _) => item)
+                                    ],
                                         ),
-                                    subtitle: 
-                                        Text(recordecgs[i].subLabel,
-                                        style: TextStyle(
-                                                  fontWeight: FontWeight.bold, fontSize: 15,
-                                                  color: Colors.grey
-                                                ),
-                                        ),
-
-                                  ),
-                              ]  
-                              )
+                                  ListTile(
+                                      title:
+                                          Text(recordecgs[i].labelResult,
+                                          style: TextStyle(
+                                                    fontWeight: FontWeight.bold, fontSize: 25,
+                                                    color: Color.fromRGBO(208, 218, 40, 1)
+                                                  ),
+                                          ),
+                                      subtitle: 
+                                          Text(recordecgs[i].subLabel,
+                                          style: TextStyle(
+                                                    fontWeight: FontWeight.bold, fontSize: 15,
+                                                    color: Colors.grey
+                                                  ),
+                                          ),
+                  
+                                    ),
+                                ]  
+                                )
+                        )
                       )
-                    )
+                    ),
                   )
                 );
               }
@@ -106,6 +110,11 @@ class ListResultsState extends State<ListResults> {
         ]
       ),
     );
+  }
+
+   void goDetails(Recordecgs ecg) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (_) => Ecg_detail(ecg: ecg)));
   }
 
 }
