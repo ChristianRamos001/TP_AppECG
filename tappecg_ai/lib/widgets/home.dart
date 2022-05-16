@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tappecg_ai/Ecg/model/user.dart';
-import 'package:tappecg_ai/Ecg/model/user.dart';
-import 'package:tappecg_ai/Ecg/ui/screens/ecg_partial_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
 import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 
@@ -38,6 +36,7 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppbar(),
+        drawer: NavBar(),
         body: widgetsChildren[_currentIndex],
         bottomNavigationBar: _buildBottomBar());
   }
@@ -113,7 +112,7 @@ class _Home extends State<Home> {
         alignment: Alignment.center,
         child: const Text(
           "4",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize : 25, fontWeight: FontWeight.bold),
         ),
       ),
     ];
