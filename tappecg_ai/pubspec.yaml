@@ -37,6 +37,9 @@ dependencies:
   intl: ^0.17.0
   provider: ^6.0.2
   syncfusion_flutter_charts: ^20.1.52
+  flutter_native_timezone: ^1.1.0
+  rxdart: ^0.27.3
+  timezone: ^0.8.0
 
 dev_dependencies:
   flutter_test:
