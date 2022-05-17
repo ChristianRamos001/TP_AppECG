@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     if (prefs.containsKey('token')) {
       String? aux = await prefs.getString('token');
       UserHelper.token = await aux;
+      UserHelper.Introviewed = (await prefs.getBool('introviewed'))!;
       return "succes";
     }
     return "null";

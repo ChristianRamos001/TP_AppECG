@@ -34,6 +34,7 @@ class UserRepository{
       
       var extractData =  json.decode(response.body);
       UserHelper.token =  extractData["token"];
+      UserHelper.email = email;
       saveToken(extractData["token"]);
       //return extractData["token"];
       return  'success';

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/intro.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
 import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 
+import '../Ecg/ui/screens/ecg_partial_view.dart';
 import '../constants.dart';
 import 'custom_animated_bottom_bar.dart';
 
@@ -21,7 +23,7 @@ class _Home extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> widgetsChildren = [
     ListResults(),
-    // EcgPartialView(),
+    EcgPartialView(),
     SendEcg(),
     SendEcg(),
   ];
