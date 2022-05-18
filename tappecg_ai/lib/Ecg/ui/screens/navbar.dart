@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/doctors_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/faq.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
 import 'package:tappecg_ai/constants.dart';
@@ -53,7 +54,10 @@ class NavBar extends StatelessWidget {
         leading: Icon(Icons.notifications),
         title: Text('Visualizar Mèdicos Asignados'),
         onTap: () {
-
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => DoctorView()));
         },
       ),
 
