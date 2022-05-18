@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tappecg_ai/Ecg/model/list_results_ecg.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/model/user.dart';
@@ -13,12 +14,14 @@ class RecordecgsRepository{
                       
   Future<List<Recordecgs>> getRecordecgs() async {
 
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String aux = await prefs.getString('token')?? "";
     final response = await http.get(
     Uri.parse(url + "recordecgs/mobile"),
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + UserHelper.token
+      'Authorization': 'Bearer ' + aux
     }
     );
     var items = json.decode(response.body);

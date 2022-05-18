@@ -37,6 +37,8 @@ dependencies:
   intl: ^0.17.0
   provider: ^6.0.2
   syncfusion_flutter_charts: ^20.1.52
+  shared_preferences: ^2.0.15
+  intro_slider: ^3.0.4
 
 dev_dependencies:
   flutter_test:

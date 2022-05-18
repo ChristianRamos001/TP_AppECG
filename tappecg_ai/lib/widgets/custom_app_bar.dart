@@ -9,18 +9,11 @@ class CustomAppbar extends AppBar {
             color: colorIcon, //change your color here
           ),
           backgroundColor: primaryColor,
-          leading: GestureDetector(
-            onTap: () {/* Write listener code here */},
-            child: const Icon(
-              Icons.menu, // add custom icons also
-            ),
-          ),
           title: const Text(
             "Smart Heart Monitoring",
             style: TextStyle(color: colorIcon),
           ),
           elevation: 0.0,
-          automaticallyImplyLeading: false,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.circle),
