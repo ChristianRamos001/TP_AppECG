@@ -80,6 +80,7 @@ class _EcgPartialView extends State<EcgPartialView> {
             print('ECG data: ${e.samples}');
             _joinedECGdata.addAll(e.samples);
           });
+
         });
       }
     });
@@ -101,12 +102,11 @@ class _EcgPartialView extends State<EcgPartialView> {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
 
-    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
-    var response = await respositoryECG.postECGData(_sendECGModel);
-    //bool correct = true;
-    print(response.toString());
+      _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
+      var response = await respositoryECG.postECGData(_sendECGModel);
+      //bool correct = true;
+      print(response.toString());
   }
-
   List<Slide> slides = [];
 
   LineChartBarData line() {
