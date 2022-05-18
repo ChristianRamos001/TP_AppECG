@@ -37,7 +37,7 @@ class NotificationService {
   Future<void> showNotification(
       int id, String title, String body, int seconds) async {
     tz.TZDateTime zonedTime = tz.TZDateTime.local(DateTime.now().year,
-            DateTime.now().month, DateTime.now().day, 20, 55)
+            DateTime.now().month, DateTime.now().day, 13, 36)
         .subtract(DateTime.now().timeZoneOffset);
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
