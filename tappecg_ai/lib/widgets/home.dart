@@ -48,7 +48,7 @@ class _Home extends State<Home> {
         DateTime.now().year, DateTime.now().month, DateTime.now().day, 18, 0);
     if (zonedTime.hour == 18 && zonedTime.minute == 0) {
       print("holaaaaaaaaaaaaaaaaaaa**********************************");
-      //startECG();
+      startECG();
     }
   }
 
@@ -76,7 +76,7 @@ class _Home extends State<Home> {
     super.initState();
     _onPressed();
     tz.initializeTimeZones();
-    NotificationService().showNotification(1, "title", "body", 10);
+    //NotificationService().showNotification(1, "title", "body", 10);
   }
 
 //*************************************************************************** */
