@@ -9,6 +9,8 @@
     <application
         android:label="ECG App"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                    android:value="AIzaSyCxW5-J3fFqdYiXfgdV-WAHVNSXYeIjyMs"></meta-data>
    <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

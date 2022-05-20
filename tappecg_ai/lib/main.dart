@@ -52,17 +52,15 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder<String>(
           future: getToken(),
           builder: (context, snapshot) {
-            if(snapshot.hasData){
-              if (snapshot.data == "succes") {
-                return const Home();
+            if (snapshot.hasData) {
+              if (snapshot.data == "success") {
+                return const LoginView();
               } else {
                 return LoginView();
               }
-            }
-            else {
+            } else {
               return LoginView();
             }
-
           }),
     );
   }

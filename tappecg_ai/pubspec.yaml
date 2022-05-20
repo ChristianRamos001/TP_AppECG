@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.1.52
   shared_preferences: ^2.0.15
   intro_slider: ^3.0.4
+  google_maps_flutter: ^2.1.5
 
 dev_dependencies:
   flutter_test:
