@@ -55,13 +55,13 @@ class _FaqState extends State<Faq> {
         appBar: CustomAppbar(),
         drawer: NavBar(),
         body: Column(children: [
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
           Padding(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: Container(
-              child: Text("Preguntas Frecuentes",
+              child: const Text("Preguntas Frecuentes",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 25,
@@ -70,7 +70,7 @@ class _FaqState extends State<Faq> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
           ExpansionPanelList(

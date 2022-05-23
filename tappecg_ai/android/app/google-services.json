@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1056019326249",
+    "project_id": "ecgappmonitoring",
+    "storage_bucket": "ecgappmonitoring.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056019326249:android:61890c3a28efea21d90338",
+        "android_client_info": {
+          "package_name": "com.solutionsia.ecgappmonitoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056019326249-v0rfhpvpg7ajrdert02qnt2iljkaf29m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9n8s2qwKQiTC4ZJ82PC0GEF2kp5hANh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056019326249-v0rfhpvpg7ajrdert02qnt2iljkaf29m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

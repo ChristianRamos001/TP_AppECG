@@ -4,7 +4,7 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/ecg_partial_view.dart';
 
 class IntroScreenDefault extends StatefulWidget {
-  IntroScreenDefault({Key? key}) : super(key: key);
+  const IntroScreenDefault({Key? key}) : super(key: key);
 
   @override
   IntroScreenDefaultState createState() => IntroScreenDefaultState();
@@ -50,7 +50,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => EcgPartialView()));
+            builder: (BuildContext context) => const EcgPartialView()));
   }
 
   @override

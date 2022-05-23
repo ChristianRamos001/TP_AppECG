@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tappecg_ai/Ecg/ui/screens/intro.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
@@ -8,6 +7,9 @@ import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 import '../Ecg/ui/screens/ecg_partial_view.dart';
 import '../constants.dart';
 import 'custom_animated_bottom_bar.dart';
+
+import 'package:tappecg_ai/Ecg/services/notification_registration_service.dart';
+import 'package:tappecg_ai/config.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -20,10 +22,22 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
+  final notificationRegistrationService = NotificationRegistrationService(
+      Config.backendServiceEndpoint, Config.apiKey);
+
+  void registerButtonClicked() async {
+    try {
+      await notificationRegistrationService
+          .registerDevice(List<String>.empty());
+    } catch (e) {
+      print(e);
+    }
+  }
+
   int _currentIndex = 0;
   final List<Widget> widgetsChildren = [
     ListResults(),
-    EcgPartialView(),
+    const EcgPartialView(),
     SendEcg(),
     SendEcg(),
   ];
@@ -54,21 +68,21 @@ class _Home extends State<Home> {
       onItemSelected: (index) => setState(() => _currentIndex = index),
       items: <BottomNavyBarItem>[
         BottomNavyBarItem(
-          icon: Icon(Icons.assignment),
-          title: Text('Registros'),
+          icon: const Icon(Icons.assignment),
+          title: const Text('Registros'),
           activeColor: colorIcon,
           inactiveColor: darkPrimaryColor,
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.query_stats),
-          title: Text('Análisis ECG'),
+          icon: const Icon(Icons.query_stats),
+          title: const Text('Análisis ECG'),
           activeColor: colorIcon,
           inactiveColor: darkPrimaryColor,
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.message),
+          icon: const Icon(Icons.message),
           title: const Text(
             "Preguntas",
           ),
@@ -114,7 +128,7 @@ class _Home extends State<Home> {
         alignment: Alignment.center,
         child: const Text(
           "4",
-          style: TextStyle(fontSize : 25, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
     ];

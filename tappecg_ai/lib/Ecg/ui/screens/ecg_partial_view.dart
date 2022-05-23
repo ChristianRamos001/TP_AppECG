@@ -4,19 +4,15 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart' show rootBundle;
 import 'package:polar/polar.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
-import 'dart:math';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:tappecg_ai/constants.dart';
 
-import '../../model/user.dart';
-
 class EcgPartialView extends StatefulWidget {
-  EcgPartialView({Key? key}) : super(key: key);
+  const EcgPartialView({Key? key}) : super(key: key);
 
   @override
   _EcgPartialView createState() => _EcgPartialView();
@@ -26,7 +22,7 @@ class _EcgPartialView extends State<EcgPartialView> {
   final _limitCount = 100;
   final _points = <FlSpot>[];
   double _xValue = 0;
-  double _step = 0.03;
+  final double _step = 0.03;
   bool _firstTime = true;
   final Color _colorLine = Colors.redAccent;
 
@@ -40,7 +36,7 @@ class _EcgPartialView extends State<EcgPartialView> {
   late SendECG _sendECGModel;
   RepositoryECG respositoryECG = RepositoryECG();
 
-  List<int> _joinedECGdata = <int>[];
+  final List<int> _joinedECGdata = <int>[];
 
   void startECG() {
     polar.deviceConnectingStream.listen((_) => setState(() {
@@ -115,8 +111,6 @@ class _EcgPartialView extends State<EcgPartialView> {
       dotData: FlDotData(
         show: false,
       ),
-      colors: [_colorLine.withOpacity(0), _colorLine],
-      colorStops: [0.1, 1.0],
       barWidth: 4,
       isCurved: false,
     );
@@ -214,7 +208,7 @@ class _EcgPartialView extends State<EcgPartialView> {
   Widget renderNextBtn() {
     return const Icon(
       Icons.navigate_next,
-      color:  Colors.white,
+      color: Colors.white,
     );
   }
 
@@ -226,15 +220,13 @@ class _EcgPartialView extends State<EcgPartialView> {
   }
 
   Widget renderSkipBtn() {
-    return const Text("Saltar",
-        style: TextStyle( color: Colors.white));
+    return const Text("Saltar", style: TextStyle(color: Colors.white));
   }
 
   ButtonStyle myButtonStyle() {
     return ButtonStyle(
       shape: MaterialStateProperty.all<OutlinedBorder>(const StadiumBorder()),
-      backgroundColor:
-          MaterialStateProperty.all<Color>(primaryColor),
+      backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
       overlayColor: MaterialStateProperty.all<Color>(accent),
     );
   }
@@ -278,14 +270,14 @@ class _EcgPartialView extends State<EcgPartialView> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Container(
-                          child:
-                              Text("Captura de Datos del Electrocardiograma")),
+                          child: const Text(
+                              "Captura de Datos del Electrocardiograma")),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text("1. Permanecer en Reposo"),
                           Text("2. No mover el dispositivo durante la prueba"),
                           Text(
@@ -305,7 +297,7 @@ class _EcgPartialView extends State<EcgPartialView> {
                             borderRadius: BorderRadius.circular(2.0)),
                         child: TextButton(
                           onPressed: () => startECG(),
-                          child: Text(
+                          child: const Text(
                             "Empezar",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -350,8 +342,8 @@ class _EcgPartialView extends State<EcgPartialView> {
                                 ],
                                 titlesData: FlTitlesData(
                                   show: true,
-                                  bottomTitles: SideTitles(
-                                    showTitles: false,
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: null,
                                   ),
                                 ),
                               ),

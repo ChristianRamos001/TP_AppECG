@@ -3,15 +3,20 @@ import 'package:provider/provider.dart';
 import 'package:tappecg_ai/Ecg/model/user.dart';
 import 'package:tappecg_ai/Ecg/provider/login_form_provider.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
-import 'package:tappecg_ai/widgets/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:tappecg_ai/Ecg/services/notification_action_service.dart';
+
+final notificationActionService = NotificationActionService();
+
 void main() {
-  runApp(AppState());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(const AppState());
 }
 
 class AppState extends StatefulWidget {
-  AppState({Key? key}) : super(key: key);
+  const AppState({Key? key}) : super(key: key);
 
   @override
   State<AppState> createState() => _AppStateState();
@@ -33,9 +38,9 @@ class MyApp extends StatelessWidget {
   Future<String> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey('token')) {
-      String? aux = await prefs.getString('token');
-      UserHelper.token = await aux;
-      UserHelper.Introviewed = (await prefs.getBool('introviewed'))!;
+      String? aux = prefs.getString('token');
+      UserHelper.token = aux;
+      UserHelper.Introviewed = (prefs.getBool('introviewed'))!;
       return "succes";
     }
     return "null";
@@ -56,11 +61,16 @@ class MyApp extends StatelessWidget {
               if (snapshot.data == "succes") {
                 return const Home();
               } else {
-                return LoginView();
+                return const LoginView();
               }
+<<<<<<< Updated upstream
             }
             else {
               return LoginView();
+=======
+            } else {
+              return const LoginView();
+>>>>>>> Stashed changes
             }
 
           }),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tappecg_ai/Ecg/model/list_results_ecg.dart';
-import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
 import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 
 class Ecg_detail extends StatefulWidget {
@@ -25,7 +24,7 @@ class _Ecg_detailState extends State<Ecg_detail> {
             child: InkWell(
                 splashColor: Colors.blue.withAlpha(30),
                 child: Padding(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
@@ -36,7 +35,7 @@ class _Ecg_detailState extends State<Ecg_detail> {
                               child: Text(
                                 "Fecha: " + recordecgs.readDate,
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15,
                                     color: Colors.black),
                               ),
@@ -49,7 +48,7 @@ class _Ecg_detailState extends State<Ecg_detail> {
                               child: Text(
                                 "Hora: " + recordecgs.readDate,
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15,
                                     color: Colors.black),
                               ),
@@ -64,15 +63,15 @@ class _Ecg_detailState extends State<Ecg_detail> {
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 15,
-                                    color: recordecgs.labelResult == "Resultados Anormales" ? Color(0xffD9124B) : Color.fromRGBO(208, 218, 40, 1)),
+                                    color: recordecgs.labelResult == "Resultados Anormales" ? const Color(0xffD9124B) : const Color.fromRGBO(208, 218, 40, 1)),
                               ),
                             ),
                           ),
                           SfCartesianChart(
-                            borderColor: Color(0xFF00BCD4),
+                            borderColor: const Color(0xFF00BCD4),
                             borderWidth: 2,
-                            margin: EdgeInsets.all(15),
-                            palette: <Color>[Color(0xFF4881B9)],
+                            margin: const EdgeInsets.all(15),
+                            palette: const <Color>[Color(0xFF4881B9)],
                             series: <ChartSeries>[
                               LineSeries<double, double>(
                                   dataSource: recordecgs.data[0].dataECG,

@@ -14,7 +14,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: ListView(padding: EdgeInsets.zero, children: [
-      UserAccountsDrawerHeader(
+      const UserAccountsDrawerHeader(
           decoration: BoxDecoration(
             color:primaryColor,
           ),
@@ -29,27 +29,41 @@ class NavBar extends StatelessWidget {
             height: 90,
           )))),
       ListTile(
-        leading: Icon(Icons.home),
-        title: Text('Home'),
+        leading: const Icon(Icons.home),
+        title: const Text('Home'),
         onTap: () {
+<<<<<<< Updated upstream
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => Home()));
         },
       ),
+=======
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) => const Home()));
+        },
+      ),
+      const Divider(),
+>>>>>>> Stashed changes
       ListTile(
-        leading: Icon(Icons.person),
-        title: Text('Preguntas Frecuentes'),
+        leading: const Icon(Icons.person),
+        title: const Text('Preguntas Frecuentes'),
         onTap: () {
+<<<<<<< Updated upstream
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => Faq()));
+=======
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) => const Faq()));
+>>>>>>> Stashed changes
         },
       ),
-      Divider(),
+      const Divider(),
       ListTile(
+<<<<<<< Updated upstream
         leading: Icon(Icons.notifications),
         title: Text('Visualizar Mèdicos Asignados'),
         onTap: () {
@@ -58,16 +72,36 @@ class NavBar extends StatelessWidget {
       ),
 
       Divider(),
+=======
+        leading: const Icon(Icons.notifications),
+        title: const Text('Visualizar Mèdicos Asignados'),
+        onTap: () {},
+      ),
+      const Divider(),
       ListTile(
-          leading: Icon(Icons.subdirectory_arrow_left),
-          title: Text('Cerrar sesión'),
+        leading: const Icon(Icons.local_hospital),
+        title: const Text('Visualizar Centros de Salud'),
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) => const Hospital()));
+        },
+      ),
+      const Divider(),
+>>>>>>> Stashed changes
+      ListTile(
+          leading: const Icon(Icons.subdirectory_arrow_left),
+          title: const Text('Cerrar sesión'),
           onTap: () {
             removeToken().then((value) => Navigator.push(
                 context,
                 MaterialPageRoute(
+<<<<<<< Updated upstream
                     builder: (BuildContext context) => LoginView())
             ));
 
+=======
+                    builder: (BuildContext context) => const LoginView())));
+>>>>>>> Stashed changes
           })
     ]));
   }
