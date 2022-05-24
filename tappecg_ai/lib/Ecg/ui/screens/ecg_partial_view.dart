@@ -1,5 +1,8 @@
 //import 'dart:io';
 
+import 'dart:async';
+
+import 'package:activity_recognition_flutter/activity_recognition_flutter.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart' show rootBundle;
@@ -12,6 +15,10 @@ import 'dart:math';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:tappecg_ai/constants.dart';
+
+import 'dart:io';
+
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../model/user.dart';
 
@@ -41,6 +48,9 @@ class _EcgPartialView extends State<EcgPartialView> {
   RepositoryECG respositoryECG = RepositoryECG();
 
   List<int> _joinedECGdata = <int>[];
+  StreamSubscription<ActivityEvent>? activityStreamSubscription;
+  List<ActivityEvent> _events = [];
+  ActivityRecognition activityRecognition = ActivityRecognition();
 
   void startECG() {
     polar.deviceConnectingStream.listen((_) => setState(() {
@@ -80,7 +90,6 @@ class _EcgPartialView extends State<EcgPartialView> {
             print('ECG data: ${e.samples}');
             _joinedECGdata.addAll(e.samples);
           });
-
         });
       }
     });
@@ -102,11 +111,12 @@ class _EcgPartialView extends State<EcgPartialView> {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
 
-      _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
-      var response = await respositoryECG.postECGData(_sendECGModel);
-      //bool correct = true;
-      print(response.toString());
+    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
+    var response = await respositoryECG.postECGData(_sendECGModel);
+    //bool correct = true;
+    print(response.toString());
   }
+
   List<Slide> slides = [];
 
   LineChartBarData line() {
@@ -125,12 +135,14 @@ class _EcgPartialView extends State<EcgPartialView> {
   @override
   void initState() {
     super.initState();
+    _init();
+    _events.add(ActivityEvent.unknown());
     slides.add(
       Slide(
         title: "Reposo",
         description:
             "1. Permanecer en Reposo, de preferencia en un lugar cómodo",
-        pathImage: "assets/logo.png",
+        pathImage: "assets/reposo 1.png",
         backgroundColor: const Color(0xffecfbf3),
         styleTitle: const TextStyle(
           color: Colors.black,
@@ -145,7 +157,7 @@ class _EcgPartialView extends State<EcgPartialView> {
       Slide(
         title: "Posicionamiento de la Banda",
         description: "2. Ubicar la Banda como se muestra en la figura",
-        pathImage: "assets/logo.png",
+        pathImage: "assets/polar ubi.jpeg",
         backgroundColor: const Color(0xffecfbf3),
         styleTitle: const TextStyle(
           color: Colors.black,
@@ -161,7 +173,7 @@ class _EcgPartialView extends State<EcgPartialView> {
         title: "No mover la Banda Inteligente",
         description:
             "3. No mover la banda inteligente durante el transcurso de la prueba",
-        pathImage: "assets/logo.png",
+        pathImage: "assets/polar h10.png",
         backgroundColor: const Color(0xffecfbf3),
         styleTitle: const TextStyle(
           color: Colors.black,
@@ -177,7 +189,7 @@ class _EcgPartialView extends State<EcgPartialView> {
         title: "Envío de Datos al Hospital",
         description:
             "4. Los datos recopilados serán enviados a su Médico desigando",
-        pathImage: "assets/logo.png",
+        pathImage: "assets/medico online.jpg",
         backgroundColor: const Color(0xffecfbf3),
         styleTitle: const TextStyle(
           color: Colors.black,
@@ -192,7 +204,7 @@ class _EcgPartialView extends State<EcgPartialView> {
       Slide(
         title: "Visualización en el Historial",
         description: "5. Los ECG's realizados se podrán ver en el Historial",
-        pathImage: "assets/logo.png",
+        pathImage: "assets/ecg.png",
         backgroundColor: const Color(0xffecfbf3),
         styleTitle: const TextStyle(
           color: Colors.black,
@@ -206,6 +218,37 @@ class _EcgPartialView extends State<EcgPartialView> {
     //startECG();
   }
 
+  void _init() async {
+    // Android requires explicitly asking permission
+    if (Platform.isAndroid) {
+      if (await Permission.activityRecognition.request().isGranted) {
+        _startTracking();
+      }
+    }
+
+    // iOS does not
+    else {
+      _startTracking();
+    }
+  }
+
+  void _startTracking() {
+    activityStreamSubscription = activityRecognition
+        .activityStream(runForegroundService: true)
+        .listen(onData, onError: onError);
+  }
+
+  void onData(ActivityEvent activityEvent) {
+    print(activityEvent);
+    setState(() {
+      _events.add(activityEvent);
+    });
+  }
+
+  void onError(Object error) {
+    print('ERROR - $error');
+  }
+
   Future<void> introviewed() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('introviewed', true);
@@ -214,7 +257,7 @@ class _EcgPartialView extends State<EcgPartialView> {
   Widget renderNextBtn() {
     return const Icon(
       Icons.navigate_next,
-      color:  Colors.white,
+      color: Colors.white,
     );
   }
 
@@ -226,15 +269,13 @@ class _EcgPartialView extends State<EcgPartialView> {
   }
 
   Widget renderSkipBtn() {
-    return const Text("Saltar",
-        style: TextStyle( color: Colors.white));
+    return const Text("Saltar", style: TextStyle(color: Colors.white));
   }
 
   ButtonStyle myButtonStyle() {
     return ButtonStyle(
       shape: MaterialStateProperty.all<OutlinedBorder>(const StadiumBorder()),
-      backgroundColor:
-          MaterialStateProperty.all<Color>(primaryColor),
+      backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
       overlayColor: MaterialStateProperty.all<Color>(accent),
     );
   }
@@ -315,57 +356,57 @@ class _EcgPartialView extends State<EcgPartialView> {
                   ],
                 ),
               )
-            : Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      _textState,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    _points.isNotEmpty
-                        ? SizedBox(
-                            height: 400,
-                            child: LineChart(
-                              LineChartData(
-                                minY: -1.5,
-                                maxY: 1.5,
-                                minX: _points.first.x,
-                                maxX: _points.last.x,
-                                lineTouchData: LineTouchData(enabled: false),
-                                clipData: FlClipData.all(),
-                                gridData: FlGridData(
-                                  show: true,
-                                  drawVerticalLine: false,
-                                ),
-                                lineBarsData: [
-                                  line(),
-                                ],
-                                titlesData: FlTitlesData(
-                                  show: true,
-                                  bottomTitles: SideTitles(
-                                    showTitles: false,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : Container()
-                  ],
+            : Scaffold(
+                appBar: AppBar(
+                  title: const Text('Activity Recognition'),
+                ),
+                body: Center(
+                  child: ListView.builder(
+                      itemCount: _events.length,
+                      reverse: true,
+                      itemBuilder: (_, int idx) {
+                        final activity = _events[idx];
+                        return ListTile(
+                          leading: _activityIcon(activity.type),
+                          title: Text(
+                              '${activity.type.toString().split('.').last} (${activity.confidence}%)'),
+                          trailing: Text(activity.timeStamp
+                              .toString()
+                              .split(' ')
+                              .last
+                              .split('.')
+                              .first),
+                        );
+                      }),
                 ),
               );
   }
 
   @override
   void dispose() {
+    activityStreamSubscription?.cancel();
     polar.disconnectFromDevice(identifier);
     super.dispose();
+  }
+
+  Icon _activityIcon(ActivityType type) {
+    switch (type) {
+      case ActivityType.WALKING:
+        return Icon(Icons.directions_walk);
+      case ActivityType.IN_VEHICLE:
+        return Icon(Icons.car_rental);
+      case ActivityType.ON_BICYCLE:
+        return Icon(Icons.pedal_bike);
+      case ActivityType.ON_FOOT:
+        return Icon(Icons.directions_walk);
+      case ActivityType.RUNNING:
+        return Icon(Icons.run_circle);
+      case ActivityType.STILL:
+        return Icon(Icons.cancel_outlined);
+      case ActivityType.TILTING:
+        return Icon(Icons.redo);
+      default:
+        return Icon(Icons.device_unknown);
+    }
   }
 }

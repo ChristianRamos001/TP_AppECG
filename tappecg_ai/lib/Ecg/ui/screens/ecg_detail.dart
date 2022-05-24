@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tappecg_ai/Ecg/model/list_results_ecg.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
@@ -34,7 +35,7 @@ class _Ecg_detailState extends State<Ecg_detail> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Fecha: " + recordecgs.readDate,
+                                "Fecha: " + recordecgs.toString(),
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 15,
@@ -47,7 +48,7 @@ class _Ecg_detailState extends State<Ecg_detail> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Hora: " + recordecgs.readDate,
+                                "Hora: " + DateFormat("yyyy-MM-dd").format(recordecgs.readDate),
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 15,

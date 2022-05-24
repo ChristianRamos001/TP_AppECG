@@ -39,6 +39,8 @@ dependencies:
   syncfusion_flutter_charts: ^20.1.52
   shared_preferences: ^2.0.15
   intro_slider: ^3.0.4
+  activity_recognition_flutter: ^4.2.0
+  table_calendar: ^3.0.5
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo.png
+    - assets/ecg.png
+    - assets/medico online.jpg
+    - assets/polar h10.png
+    - assets/polar ubi.jpeg
+    - assets/reposo 1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

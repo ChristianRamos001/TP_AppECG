@@ -1,18 +1,16 @@
 class Recordecgs {
   final String id;
   final String userID;
-  final String readDate;
+  final DateTime readDate;
   final List<Data> data;
-  final double percentResult;
   final String labelResult;
   final String subLabel;
-  Recordecgs(this.id, this.userID, this.readDate, this.data, this.percentResult, this.labelResult, this.subLabel);
+  Recordecgs(this.id, this.userID, this.readDate, this.data, this.labelResult, this.subLabel);
 
   Recordecgs.fromMap(Map<String, dynamic> item) :
   id = item['id'],
   userID = item['userID'],
-  readDate = item['readDate'],
-  percentResult = item['percentResult'],
+  readDate = DateTime.parse(item['readDate']),
   labelResult = item['labelResult'],
   data = item['data'].map((item) => Data.fromMap(item)).toList().cast<Data>(),
   subLabel = item['subLabel'];
@@ -23,7 +21,6 @@ class Recordecgs {
       'userID': userID,
       'readDate': readDate,
       'data': data,
-      'percentResult': percentResult,
       'labelResult': labelResult,
       'subLabel': subLabel
     };

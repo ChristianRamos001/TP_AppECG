@@ -34,6 +34,10 @@ class _LoginViewState extends State<LoginView> {
     if (await userRepository.loginRequest(email,password) == "success") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Home()));
+    }else{
+      setState(() {
+        passwordIsValid=false;
+      });
     }
   }
   @override
@@ -117,7 +121,6 @@ class _LoginViewState extends State<LoginView> {
                   login(emailController.text.toString(), passwordController.text.toString())
                       .then((value) =>
                       setState(() {
-                        passwordIsValid=false;
                         loginForm.isLoading=false;
                       }),
 
