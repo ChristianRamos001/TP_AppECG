@@ -5,8 +5,9 @@ import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 
 void main() {
-  runApp( AppState());
+  runApp(AppState());
 }
+
 class AppState extends StatefulWidget {
   AppState({Key? key}) : super(key: key);
 
@@ -17,14 +18,14 @@ class AppState extends StatefulWidget {
 class _AppStateState extends State<AppState> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [ ChangeNotifierProvider(create: (_)=> LoginFormProvider()) ],
-    child: const MyApp(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => LoginFormProvider())],
+      child: const MyApp(),
     );
   }
 }
 
 class MyApp extends StatelessWidget {
-  
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.

@@ -42,13 +42,13 @@ class _Home extends State<Home> {
 //------
   late int _counter;
 
-  void loop(int val) {
+  static void loop(int val) {
     tz.initializeTimeZones();
     tz.TZDateTime zonedTime = tz.TZDateTime.local(
         DateTime.now().year, DateTime.now().month, DateTime.now().day, 18, 0);
     if (zonedTime.hour == 18 && zonedTime.minute == 0) {
-      print("holaaaaaaaaaaaaaaaaaaa**********************************");
-      startECG();
+      print("holaaaaaaaaaaaaaaaaaaajejejee**********************************");
+      //startECG();
     }
   }
 
@@ -66,7 +66,6 @@ class _Home extends State<Home> {
   void initState() {
     super.initState();
     _onPressed();
-    tz.initializeTimeZones();
   }
 
 //*************************************************************************** */
