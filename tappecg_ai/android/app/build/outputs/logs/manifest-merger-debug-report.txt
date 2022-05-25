@@ -36,9 +36,9 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\cledm\.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\9c3559852e615a1864e999de673e6eb6\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\93eba9e66c33cd1f0071ac049e3ea78d\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\08c11b0fdd02a44ef9f67397307bbd97\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml:1:1-8:12
-INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml:1:1-8:12
-INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml:1:1-8:12
+INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml:1:1-11:12
+INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml:1:1-11:12
+INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml:1:1-11:12
 	package
 		ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:2:5-49
 		INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml
@@ -73,16 +73,22 @@ ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\
 		ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:7:22-78
 uses-permission#android.permission.ACTIVITY_RECOGNITION
 ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:8:5-79
+MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:8:5-79
+MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:8:5-79
 	android:name
 		ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:8:22-76
 uses-permission#com.google.android.gms.permission.ACTIVITY_RECOGNITION
 ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:9:5-94
+MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:9:5-94
+MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:9:5-94
 MERGED from [:activity_recognition_flutter] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\activity_recognition_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-94
 MERGED from [:activity_recognition_flutter] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\activity_recognition_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-94
 	android:name
 		ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:9:22-91
 uses-permission#android.permission.FOREGROUND_SERVICE
 ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:10:5-77
+MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:10:5-77
+MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:10:5-77
 	android:name
 		ADDED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:10:22-74
 application

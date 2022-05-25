@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/doctors_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/faq.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/test.dart';
 import 'package:tappecg_ai/constants.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 
@@ -49,6 +50,16 @@ class NavBar extends StatelessWidget {
                   builder: (BuildContext context) => Faq()));
         },
       ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Test'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => ActivityRecognitionApp()));
+            },
+          ),
       Divider(),
       ListTile(
         leading: Icon(Icons.notifications),

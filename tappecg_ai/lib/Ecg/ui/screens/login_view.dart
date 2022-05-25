@@ -32,8 +32,12 @@ class _LoginViewState extends State<LoginView> {
   Future<void> login(String email, String password) async {
 
     if (await userRepository.loginRequest(email,password) == "success") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.pushReplacement<void, void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => const Home(),
+        ),
+      );
     }else{
       setState(() {
         passwordIsValid=false;

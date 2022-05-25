@@ -41,6 +41,7 @@ dependencies:
   intro_slider: ^3.0.4
   activity_recognition_flutter: ^4.2.0
   table_calendar: ^3.0.5
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:
