@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tappecg_ai/Ecg/model/list_results_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/recordecgs.dart';
-import 'package:tappecg_ai/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:intl/intl.dart';
 
 
 class ListResults extends StatefulWidget {
@@ -23,8 +21,9 @@ class ListResultsState extends State<ListResults> {
     });
   }
 
+  @override
   initState() {
-   this.makeRequest();
+   makeRequest();
   }
 
   @override
@@ -32,11 +31,11 @@ class ListResultsState extends State<ListResults> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
           Container(
-            child: Text("Historial",
+            child: const Text("Historial",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 25,
@@ -45,12 +44,12 @@ class ListResultsState extends State<ListResults> {
                     ),
           ),
           
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               itemCount: recordecgs == null ? 0 : recordecgs.length,
               itemBuilder: (BuildContext context, int i){
                 return Center(
@@ -58,15 +57,15 @@ class ListResultsState extends State<ListResults> {
                     child: InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 SfCartesianChart(
-                                  borderColor: Color(0xFF00BCD4),
+                                  borderColor: const Color(0xFF00BCD4),
                                   borderWidth: 2,
-                                  margin: EdgeInsets.all(15),
-                                  palette: <Color>[
+                                  margin: const EdgeInsets.all(15),
+                                  palette: const <Color>[
                                   Color(0xFF4881B9)
                                   ],
                                   series: <ChartSeries>[
@@ -79,14 +78,14 @@ class ListResultsState extends State<ListResults> {
                                 ListTile(
                                     title:
                                         Text(recordecgs[i].labelResult,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                                   fontWeight: FontWeight.bold, fontSize: 25,
                                                   color: Color.fromRGBO(208, 218, 40, 1)
                                                 ),
                                         ),
                                     subtitle: 
                                         Text(recordecgs[i].subLabel+ " / " + recordecgs[i].readDate.substring(0, 16) ,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                                   fontWeight: FontWeight.bold, fontSize: 15,
                                                   color: Colors.grey
                                                 ),

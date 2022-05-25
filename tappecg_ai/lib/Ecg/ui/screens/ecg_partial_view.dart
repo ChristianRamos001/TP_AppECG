@@ -4,13 +4,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart' show rootBundle;
 import 'package:polar/polar.dart';
-import 'package:intl/intl.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
-import 'dart:math';
 
 class EcgPartialView extends StatefulWidget {
-  EcgPartialView({Key? key}) : super(key: key);
+  const EcgPartialView({Key? key}) : super(key: key);
 
   @override
   _EcgPartialView createState() => _EcgPartialView();
@@ -21,7 +19,7 @@ class _EcgPartialView extends State<EcgPartialView> {
   final _limitCount = 100;
   final _points = <FlSpot>[];
   double _xValue = 0;
-  double _step = 0.03;
+  final double _step = 0.03;
   bool _firstTime = true;
   final Color _colorLine = Colors.redAccent;
 
@@ -34,7 +32,7 @@ class _EcgPartialView extends State<EcgPartialView> {
   late SendECG _sendECGModel;
   RepositoryECG respositoryECG = RepositoryECG();
 
-  List<int> _joinedECGdata = <int>[];
+  final List<int> _joinedECGdata = <int>[];
 
   void startECG() {
     polar.deviceConnectingStream.listen((_) => setState(() {
@@ -132,13 +130,13 @@ class _EcgPartialView extends State<EcgPartialView> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
-                      child: Text("Captura de Datos del Electrocardiograma")),
+                      child: const Text("Captura de Datos del Electrocardiograma")),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text("1. Permanecer en Reposo"),
                       Text("2. No mover el dispositivo durante la prueba"),
                       Text(
@@ -157,7 +155,7 @@ class _EcgPartialView extends State<EcgPartialView> {
                         borderRadius: BorderRadius.circular(2.0)),
                     child: TextButton(
                       onPressed: () => startECG(),
-                      child: Text(
+                      child: const Text(
                         "Empezar",
                         style: TextStyle(color: Colors.white),
                       ),

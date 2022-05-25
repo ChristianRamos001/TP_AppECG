@@ -1,14 +1,10 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tappecg_ai/Ecg/model/user.dart';
 import 'package:tappecg_ai/Ecg/provider/login_form_provider.dart';
 import 'package:tappecg_ai/Ecg/repository/user_repository.dart';
-import 'package:tappecg_ai/main.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 
-import '../../../constants.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -32,7 +28,7 @@ class _LoginViewState extends State<LoginView> {
 
     if (await userRepository.loginRequest(email,password) == "success") {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Home()));
+          context, MaterialPageRoute(builder: (context) => const Home()));
     }
 
   }
@@ -46,21 +42,21 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
+              SizedBox(
                 height:MediaQuery.of(context).size.height*0.20,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.of(context).size.width*0.30,
                     width: MediaQuery.of(context).size.width*0.30,
-                    child: FittedBox( child: Image(
+                    child: const FittedBox( child: Image(
                       image: AssetImage("assets/logo.png"),
                     ),
                         fit:BoxFit.fill),
                   ),
                 ),
               ),
-              Text(
+              const Text(
                 'Bienvenido',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontSize: 25,
@@ -68,8 +64,8 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: Text(
                 'Por favor, ingrese una contraseña para continuar',
                 style: TextStyle(
@@ -81,37 +77,37 @@ class _LoginViewState extends State<LoginView> {
               ),            
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Email'
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               TextFormField(
                 obscureText: _passwordVissible,
                 controller: passwordController,
                 
                 decoration: InputDecoration(
                     hintText: 'Password',
-                    suffix: IconButton(icon: Icon(Icons.remove_red_eye), 
+                    suffix: IconButton(icon: const Icon(Icons.remove_red_eye), 
                     onPressed:()=>_toggle() ,)
                 ),
                 
         
               ),
-              SizedBox(height: 40,),
+              const SizedBox(height: 40,),
               GestureDetector(
                 onTap: (){
                   loginForm.isLoading=true;
                   login(emailController.text.toString(), passwordController.text.toString());
                 },
-                child: loginForm.isLoading? CircularProgressIndicator( color: Colors.blue,):Container(
+                child: loginForm.isLoading? const CircularProgressIndicator( color: Colors.blue,):Container(
                   height: 50,
                   width: 100,
                   decoration: BoxDecoration(
-                    color: Color(0xFF4881B9),
+                    color: const Color(0xFF4881B9),
                     borderRadius: BorderRadius.circular(10)
                   ),
-                  child: Center(child: Text(
+                  child: const Center(child: Text(
                     'Ingresar',
                     style: TextStyle(
                       color: Colors.white

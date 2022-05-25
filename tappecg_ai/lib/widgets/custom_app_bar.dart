@@ -23,7 +23,7 @@ class CustomAppbar extends AppBar {
           automaticallyImplyLeading: false,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.circle),
+              icon: const Icon(Icons.circle),
               onPressed: () => null,
             ),
           ],

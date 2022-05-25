@@ -5,6 +5,7 @@ import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(AppState());
 }
 

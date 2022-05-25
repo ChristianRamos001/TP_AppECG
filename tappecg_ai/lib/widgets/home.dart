@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tappecg_ai/Ecg/model/user.dart';
-import 'package:tappecg_ai/Ecg/model/user.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/ecg_partial_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
@@ -9,10 +7,8 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:flutter/foundation.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart' show rootBundle;
 import 'package:polar/polar.dart';
-import 'package:intl/intl.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
 import 'dart:math';
@@ -34,25 +30,24 @@ class _Home extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> widgetsChildren = [
     ListResults(),
-    EcgPartialView(),
+    const EcgPartialView(),
     SendEcg(),
     SendEcg(),
   ];
 
 //------
-  late int _counter;
 
   static void loop(int val) {
     tz.initializeTimeZones();
     tz.TZDateTime zonedTime = tz.TZDateTime.local(
         DateTime.now().year, DateTime.now().month, DateTime.now().day, 18, 0);
-    if (zonedTime.hour == 18 && zonedTime.minute == 0) {
+    if (zonedTime.hour == 18) {
       print("holaaaaaaaaaaaaaaaaaaajejejee**********************************");
-      //startECG();
+      startECG();
     }
   }
 
-  Future<void> _onPressed() async {
+  void _onPressed() async {
     await compute(loop, 1);
   }
 
@@ -70,33 +65,26 @@ class _Home extends State<Home> {
 
 //*************************************************************************** */
 
-  final _limitCount = 100;
-  final _points = <FlSpot>[];
-  double _xValue = 0;
-  double _step = 0.03;
-  bool _firstTime = true;
-  final Color _colorLine = Colors.redAccent;
+  static final _limitCount = 100;
+  static final _points = <FlSpot>[];
+  static double _xValue = 0;
+  static final double _step = 0.03;
+  static bool _firstTime = true;
+  static final Color _colorLine = Colors.redAccent;
 
-  Polar polar = Polar();
+  static Polar polar = Polar();
 
   static const identifier = '7E1B542A';
-  String _textState =
+  static String _textState =
       "Active el Bluetooth y colóquese el dispositivo en el pecho para empezar por favor";
-  bool _startECG = false;
-  late SendECG _sendECGModel;
-  RepositoryECG respositoryECG = RepositoryECG();
+  static bool _startECG = false;
+  static late SendECG _sendECGModel;
+  static RepositoryECG respositoryECG = RepositoryECG();
 
-  List<int> _joinedECGdata = <int>[];
+  static final List<int> _joinedECGdata = <int>[];
 
-  void startECG() {
-    polar.deviceConnectingStream.listen((_) => setState(() {
-          _textState = "Conectando";
-        }));
-
-    polar.deviceConnectedStream.listen((_) => setState(() {
-          _textState = "Conectado!";
-        }));
-
+  static void startECG() {
+    print("inside STARTECG***********************************");
     var currentTimestamp = 0;
 
     polar.streamingFeaturesReadyStream.listen((e) {
@@ -121,29 +109,19 @@ class _Home extends State<Home> {
             // 1 minuto/ 30 segundos
             polar.disconnectFromDevice(identifier);
           }
-
-          setState(() {
-            print('ECG data: ${e.samples}');
-            _joinedECGdata.addAll(e.samples);
-          });
+          _joinedECGdata.addAll(e.samples); //THIS WAS IN A SETSTATE
         });
       }
     });
 
     polar.deviceDisconnectedStream.listen((_) {
       sentToCloud();
-      setState(() {
-        _textState = "Prueba completada";
-      });
     });
 
     polar.connectToDevice(identifier);
-    setState(() {
-      _startECG = true;
-    });
   }
 
-  void sentToCloud() async {
+  static void sentToCloud() async {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
     Random random = Random();
@@ -157,7 +135,7 @@ class _Home extends State<Home> {
     print(response.toString());
   }
 
-  LineChartBarData line() {
+  static LineChartBarData line() {
     return LineChartBarData(
       spots: _points,
       dotData: FlDotData(
@@ -191,21 +169,21 @@ class _Home extends State<Home> {
       onItemSelected: (index) => setState(() => _currentIndex = index),
       items: <BottomNavyBarItem>[
         BottomNavyBarItem(
-          icon: Icon(Icons.assignment),
-          title: Text('Registros'),
+          icon: const Icon(Icons.assignment),
+          title: const Text('Registros'),
           activeColor: colorIcon,
           inactiveColor: darkPrimaryColor,
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.query_stats),
-          title: Text('Análisis ECG'),
+          icon: const Icon(Icons.query_stats),
+          title: const Text('Análisis ECG'),
           activeColor: colorIcon,
           inactiveColor: darkPrimaryColor,
           textAlign: TextAlign.center,
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.message),
+          icon: const Icon(Icons.message),
           title: const Text(
             "Preguntas",
           ),
