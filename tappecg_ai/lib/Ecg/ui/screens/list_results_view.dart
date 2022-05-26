@@ -156,12 +156,6 @@ class ListResultsState extends State<ListResults> {
               color: Colors.white,
             ),
           ),
-        ),..._getEventsfromDay(selectedDay).map(
-              (Event event) => ListTile(
-            title: Text(
-              event.title,
-            ),
-          ),
         ),
         SizedBox(
           height: 2,
