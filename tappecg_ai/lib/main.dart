@@ -6,6 +6,7 @@ import 'package:tappecg_ai/widgets/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(AppState());
 }
 

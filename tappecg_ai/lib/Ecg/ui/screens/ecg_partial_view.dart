@@ -15,38 +15,35 @@ class EcgPartialView extends StatefulWidget {
 }
 
 class _EcgPartialView extends State<EcgPartialView> {
+  static final _limitCount = 100;
+  static final _points = <FlSpot>[];
+  static double _xValue = 0;
+  static final double _step = 0.03;
+  static bool _firstTime = true;
+  static final Color _colorLine = Colors.redAccent;
 
-  final _limitCount = 100;
-  final _points = <FlSpot>[];
-  double _xValue = 0;
-  final double _step = 0.03;
-  bool _firstTime = true;
-  final Color _colorLine = Colors.redAccent;
-
-  Polar polar = Polar();
+  static Polar polar = Polar();
 
   static const identifier = '7E1B542A';
-  String _textState =
+  static String _textState =
       "Active el Bluetooth y colóquese el dispositivo en el pecho para empezar por favor";
-  bool _startECG = false;
-  late SendECG _sendECGModel;
-  RepositoryECG respositoryECG = RepositoryECG();
+  static bool _startECG = false;
+  static late SendECG _sendECGModel;
+  static RepositoryECG respositoryECG = RepositoryECG();
 
-  final List<int> _joinedECGdata = <int>[];
+  static final List<int> _joinedECGdata = <int>[];
 
-  void startECG() {
-    polar.deviceConnectingStream.listen((_) => setState(() {
-          _textState = "Conectando";
-        }));
+  static void startECG() {
+    polar.deviceConnectingStream.listen((_) => _textState = "Conectando");
 
-    polar.deviceConnectedStream.listen((_) => setState(() {
-          _textState = "Conectado!";
-        }));
+    polar.deviceConnectedStream.listen((_) => _textState = "Conectado!");
 
     var currentTimestamp = 0;
 
     polar.streamingFeaturesReadyStream.listen((e) {
+      print("1111111111111111111111111111111111111111111111111111");
       if (e.features.contains(DeviceStreamingFeature.ecg)) {
+        print("2222222222222222222222222222222222222222222222");
         polar.startEcgStreaming(e.identifier).listen((e) {
           if (_firstTime) {
             currentTimestamp = e.timeStamp;
@@ -68,38 +65,31 @@ class _EcgPartialView extends State<EcgPartialView> {
             polar.disconnectFromDevice(identifier);
           }
 
-          setState(() {
-            print('ECG data: ${e.samples}');
-            _joinedECGdata.addAll(e.samples);
-          });
-
+          print('ECG data: ${e.samples}');
+          _joinedECGdata.addAll(e.samples);
         });
       }
     });
 
     polar.deviceDisconnectedStream.listen((_) {
+      print("aboutTOSEND********************************");
       sentToCloud();
-      setState(() {
-        _textState = "Prueba completada";
-      });
+      _textState = "Prueba completada";
     });
 
     polar.connectToDevice(identifier);
-    setState(() {
-      _startECG = true;
-    });
+    _startECG = true;
   }
 
-  void sentToCloud() async{
+  static void sentToCloud() async {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
 
-      _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
-      var response = await respositoryECG.postECGData(_sendECGModel);
-      //bool correct = true;
-      print(response.toString());
-
-    }
+    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
+    var response = await respositoryECG.postECGData(_sendECGModel);
+    //bool correct = true;
+    print(response.toString());
+  }
 
   LineChartBarData line() {
     return LineChartBarData(
@@ -130,7 +120,8 @@ class _EcgPartialView extends State<EcgPartialView> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
-                      child: const Text("Captura de Datos del Electrocardiograma")),
+                      child: const Text(
+                          "Captura de Datos del Electrocardiograma")),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -218,6 +209,4 @@ class _EcgPartialView extends State<EcgPartialView> {
     polar.disconnectFromDevice(identifier);
     super.dispose();
   }
-
-
 }

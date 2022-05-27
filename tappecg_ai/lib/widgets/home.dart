@@ -1,4 +1,7 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
+import 'package:isolate_handler/isolate_handler.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/ecg_partial_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
@@ -35,9 +38,27 @@ class _Home extends State<Home> {
     SendEcg(),
   ];
 
-//------
+  void onTapTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
-  static void loop(int val) {
+//------
+  @override
+  void initState() {
+    super.initState();
+    print("INIT******************************+");
+    _onPressed();
+  }
+
+//------
+  static void loop(Map<String, dynamic> context) {
+    final messenger = HandledIsolate.initialize(context);
+    messenger.listen((count) {
+      messenger.send(++count);
+    });
+
     tz.initializeTimeZones();
     tz.TZDateTime zonedTime = tz.TZDateTime.local(
         DateTime.now().year, DateTime.now().month, DateTime.now().day, 18, 0);
@@ -47,20 +68,19 @@ class _Home extends State<Home> {
     }
   }
 
+  final isolate = IsolateHandler();
+  int counter = 0;
   void _onPressed() async {
-    await compute(loop, 1);
+    isolate.spawn<int>(loop,
+        name: "counter",
+        onReceive: setCounter,
+        onInitialized: () => isolate.send(counter, to: "counter"));
+    //await compute(loop, 1);
   }
 
-  void onTapTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _onPressed();
+  void setCounter(int count) {
+    counter = count;
+    isolate.kill;
   }
 
 //*************************************************************************** */
@@ -84,37 +104,32 @@ class _Home extends State<Home> {
   static final List<int> _joinedECGdata = <int>[];
 
   static void startECG() {
-    print("inside STARTECG***********************************");
     var currentTimestamp = 0;
 
     polar.streamingFeaturesReadyStream.listen((e) {
+      print("1111111111111111111111111111111111111111111111111111");
       if (e.features.contains(DeviceStreamingFeature.ecg)) {
+        print("2222222222222222222222222222222222222222222222");
         polar.startEcgStreaming(e.identifier).listen((e) {
           if (_firstTime) {
             currentTimestamp = e.timeStamp;
             _firstTime = false;
           }
 
-          while (_points.length > _limitCount) {
-            _points.removeAt(0);
-          }
-
-          //
-          for (var i = 0; i < e.samples.length; i++) {
-            _points.add(FlSpot(_xValue, e.samples[i] / 1000.0));
-            _xValue += _step;
-          }
-          print('ECG TIME: ${e.timeStamp}');
+          //print('ECG TIME: ${e.timeStamp}');
           if ((e.timeStamp - currentTimestamp) / 1000000000 >= 30) {
             // 1 minuto/ 30 segundos
             polar.disconnectFromDevice(identifier);
           }
-          _joinedECGdata.addAll(e.samples); //THIS WAS IN A SETSTATE
+
+          //print('ECG data: ${e.samples}');
+          _joinedECGdata.addAll(e.samples);
         });
       }
     });
 
     polar.deviceDisconnectedStream.listen((_) {
+      //print("aboutTOSEND********************************");
       sentToCloud();
     });
 
@@ -122,33 +137,14 @@ class _Home extends State<Home> {
   }
 
   static void sentToCloud() async {
-    print('ECG data FINAL: ${_joinedECGdata.length}');
-    DateTime currentDatetime = DateTime.now();
-    Random random = Random();
-    int randomNumber = random.nextInt(2);
-    List<String> listNumber = ['11', '12', '16'];
+    //print('ECG data FINAL: ${_joinedECGdata.length}');
+    //DateTime currentDatetime = DateTime.now();
 
-    _sendECGModel =
-        SendECG(listNumber[randomNumber], _joinedECGdata, DateTime.now());
+    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
     var response = await respositoryECG.postECGData(_sendECGModel);
     //bool correct = true;
-    print(response.toString());
+    //print(response.toString());
   }
-
-  static LineChartBarData line() {
-    return LineChartBarData(
-      spots: _points,
-      dotData: FlDotData(
-        show: false,
-      ),
-      colors: [_colorLine.withOpacity(0), _colorLine],
-      colorStops: [0.1, 1.0],
-      barWidth: 4,
-      isCurved: false,
-    );
-  }
-
-//------
 
   @override
   Widget build(BuildContext context) {
