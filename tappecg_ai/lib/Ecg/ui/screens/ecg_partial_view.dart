@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:polar/polar.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:isolate_handler/isolate_handler.dart';
 
 class EcgPartialView extends StatefulWidget {
   const EcgPartialView({Key? key}) : super(key: key);
@@ -15,6 +18,35 @@ class EcgPartialView extends StatefulWidget {
 }
 
 class _EcgPartialView extends State<EcgPartialView> {
+  static void loop(Map<String, dynamic> context) {
+    final messenger = HandledIsolate.initialize(context);
+    messenger.listen((count) {
+      messenger.send(++count);
+    });
+  }
+
+  final isolate = IsolateHandler();
+  int counter = 0;
+  void _onPressed() async {
+    isolate.spawn<int>(loop,
+        name: "counter",
+        onReceive: setCounter,
+        onInitialized: () => isolate.send(counter, to: "counter"));
+    //await compute(loop, 1);
+  }
+
+  void setCounter(int count) {
+    tz.initializeTimeZones();
+    tz.TZDateTime zonedTime = tz.TZDateTime.local(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day, 18, 0);
+    if (zonedTime.hour == 18) {
+      print("holaaaaaaaaaaaaaaaaaaajejejee**********************************");
+      startECG();
+    }
+    counter = count;
+    isolate.kill;
+  }
+
   static final _limitCount = 100;
   static final _points = <FlSpot>[];
   static double _xValue = 0;
@@ -145,7 +177,7 @@ class _EcgPartialView extends State<EcgPartialView> {
                         color: Colors.black54,
                         borderRadius: BorderRadius.circular(2.0)),
                     child: TextButton(
-                      onPressed: () => startECG(),
+                      onPressed: () => _onPressed(),
                       child: const Text(
                         "Empezar",
                         style: TextStyle(color: Colors.white),

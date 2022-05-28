@@ -41,6 +41,7 @@ dependencies:
   rxdart: ^0.27.3
   timezone: ^0.8.0
   isolate_handler: ^1.0.1
+  flutter_foreground_task: ^3.7.3
 
 dev_dependencies:
   flutter_test:
