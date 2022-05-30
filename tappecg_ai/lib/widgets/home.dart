@@ -3,6 +3,7 @@ import 'package:tappecg_ai/Ecg/ui/screens/intro.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/connect_wearable.dart';
 import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 
 import '../Ecg/ui/screens/ecg_partial_view.dart';
@@ -25,7 +26,7 @@ class _Home extends State<Home> {
     ListResults(),
     EcgPartialView(),
     SendEcg(),
-    SendEcg(),
+    Connect_wearable(),
   ];
 
   void onTapTapped(int index) {
@@ -114,7 +115,7 @@ class _Home extends State<Home> {
         alignment: Alignment.center,
         child: const Text(
           "4",
-          style: TextStyle(fontSize : 25, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
     ];
