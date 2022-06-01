@@ -5,17 +5,18 @@ INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\s
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:1:1-54:12
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:1:1-54:12
 MERGED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml:1:1-54:12
-MERGED from [:polar] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\polar\intermediates\library_manifest\debug\AndroidManifest.xml:3:1-39:12
 MERGED from [:shared_preferences_android] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:polar] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\polar\intermediates\library_manifest\debug\AndroidManifest.xml:3:1-39:12
 MERGED from [:permission_handler_android] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\permission_handler_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:activity_recognition_flutter] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\activity_recognition_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:device_info_plus] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\device_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_secure_storage] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\flutter_secure_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\7c3d5a0ec5dcf37909cfc73a06ad0651\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\2d5d729f1a275dd3e788e195c24d5c2e\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [com.github.polarofficial:polar-ble-sdk:3.2.10] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\61aa5d9631282d7b57b7377b0b1d05c3\jetified-polar-ble-sdk-3.2.10\AndroidManifest.xml:2:1-9:12
 MERGED from [io.reactivex.rxjava3:rxandroid:3.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\55db9727d7b520b2a746dd4afd04122d\jetified-rxandroid-3.0.0\AndroidManifest.xml:15:1-20:12
-MERGED from [androidx.core:core-ktx:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\324686e377a7c7d5af0b3002d743d8db\jetified-core-ktx-1.7.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\5185196760797c5871cd3285326455b4\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\298d74830e8753e226f3f3bde4c5dc64\jetified-play-services-location-19.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\b5fc803058d2b82da2b7419a5ba8d974\jetified-play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\6b61de8c4ea3f0b0c13afc3c2fd177c2\jetified-play-services-places-placereport-17.0.0\AndroidManifest.xml:17:1-24:12
@@ -23,15 +24,16 @@ MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\cledm\.
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\5fa5e3078fed542caeabffc5553e49e1\jetified-play-services-basement-18.0.0\AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\e0dada851a14b33c3245b298f214b563\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\14c6e2edca7a3ad4c434b561a96c8d01\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\324686e377a7c7d5af0b3002d743d8db\jetified-core-ktx-1.7.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\4e15ce71f4321a6d1c82718704239b04\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\9d776cda746dabed879e30c47be1432f\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\b2891aa03d225808c766cf2ae1de5afd\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\09518dcc69d051b113936c4f1addbf35\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\ff5a005f4fd973dc869fab7d394891a5\core-1.7.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\f4f67a78de15ce9516e92ad8c25a1f7c\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\56207dc39f1d72d001baaf6252e9e7e4\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\1e4ad3121290892af58731ff22b4562e\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\0c3f8e404f213659d1a768692d038a3c\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\56207dc39f1d72d001baaf6252e9e7e4\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\98bb0b7f8d7e29d2fbb06af45f4134a3\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\9c3559852e615a1864e999de673e6eb6\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\93eba9e66c33cd1f0071ac049e3ea78d\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
@@ -173,10 +175,10 @@ uses-sdk
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml
-MERGED from [:polar] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\polar\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-44
-MERGED from [:polar] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\polar\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-44
 MERGED from [:shared_preferences_android] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_android] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:polar] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\polar\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-44
+MERGED from [:polar] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\polar\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-44
 MERGED from [:permission_handler_android] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\permission_handler_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:permission_handler_android] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\permission_handler_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -185,6 +187,8 @@ MERGED from [:activity_recognition_flutter] C:\Users\cledm\Documents\GitHub\TP_A
 MERGED from [:activity_recognition_flutter] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\activity_recognition_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:device_info_plus] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\device_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:device_info_plus] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\device_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_secure_storage] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\flutter_secure_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-11:53
+MERGED from [:flutter_secure_storage] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\flutter_secure_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-11:53
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\7c3d5a0ec5dcf37909cfc73a06ad0651\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\7c3d5a0ec5dcf37909cfc73a06ad0651\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\2d5d729f1a275dd3e788e195c24d5c2e\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
@@ -193,8 +197,8 @@ MERGED from [com.github.polarofficial:polar-ble-sdk:3.2.10] C:\Users\cledm\.grad
 MERGED from [com.github.polarofficial:polar-ble-sdk:3.2.10] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\61aa5d9631282d7b57b7377b0b1d05c3\jetified-polar-ble-sdk-3.2.10\AndroidManifest.xml:5:5-7:41
 MERGED from [io.reactivex.rxjava3:rxandroid:3.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\55db9727d7b520b2a746dd4afd04122d\jetified-rxandroid-3.0.0\AndroidManifest.xml:18:5-43
 MERGED from [io.reactivex.rxjava3:rxandroid:3.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\55db9727d7b520b2a746dd4afd04122d\jetified-rxandroid-3.0.0\AndroidManifest.xml:18:5-43
-MERGED from [androidx.core:core-ktx:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\324686e377a7c7d5af0b3002d743d8db\jetified-core-ktx-1.7.0\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.core:core-ktx:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\324686e377a7c7d5af0b3002d743d8db\jetified-core-ktx-1.7.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\5185196760797c5871cd3285326455b4\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\5185196760797c5871cd3285326455b4\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\298d74830e8753e226f3f3bde4c5dc64\jetified-play-services-location-19.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\298d74830e8753e226f3f3bde4c5dc64\jetified-play-services-location-19.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\b5fc803058d2b82da2b7419a5ba8d974\jetified-play-services-base-18.0.1\AndroidManifest.xml:18:5-43
@@ -209,6 +213,8 @@ MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cledm\.gradle\caches\tra
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\e0dada851a14b33c3245b298f214b563\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\14c6e2edca7a3ad4c434b561a96c8d01\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\14c6e2edca7a3ad4c434b561a96c8d01\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\324686e377a7c7d5af0b3002d743d8db\jetified-core-ktx-1.7.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\324686e377a7c7d5af0b3002d743d8db\jetified-core-ktx-1.7.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\4e15ce71f4321a6d1c82718704239b04\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\4e15ce71f4321a6d1c82718704239b04\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\9d776cda746dabed879e30c47be1432f\loader-1.0.0\AndroidManifest.xml:20:5-44
@@ -221,12 +227,12 @@ MERGED from [androidx.core:core:1.7.0] C:\Users\cledm\.gradle\caches\transforms-
 MERGED from [androidx.core:core:1.7.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\ff5a005f4fd973dc869fab7d394891a5\core-1.7.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\f4f67a78de15ce9516e92ad8c25a1f7c\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\f4f67a78de15ce9516e92ad8c25a1f7c\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\56207dc39f1d72d001baaf6252e9e7e4\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\56207dc39f1d72d001baaf6252e9e7e4\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\1e4ad3121290892af58731ff22b4562e\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\1e4ad3121290892af58731ff22b4562e\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\0c3f8e404f213659d1a768692d038a3c\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\0c3f8e404f213659d1a768692d038a3c\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\56207dc39f1d72d001baaf6252e9e7e4\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\56207dc39f1d72d001baaf6252e9e7e4\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\98bb0b7f8d7e29d2fbb06af45f4134a3\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\98bb0b7f8d7e29d2fbb06af45f4134a3\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\9c3559852e615a1864e999de673e6eb6\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
@@ -237,6 +243,8 @@ MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\cledm\.
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\cledm\.gradle\caches\transforms-2\files-2.1\08c11b0fdd02a44ef9f67397307bbd97\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml
 INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [:flutter_secure_storage] C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\build\flutter_secure_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-50
 	android:targetSdkVersion
 		INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\cledm\Documents\GitHub\TP_AppECG\tappecg_ai\android\app\src\debug\AndroidManifest.xml
