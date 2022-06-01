@@ -78,6 +78,17 @@ class ListResultsState extends State<ListResults> {
       recordecgs = items;
     });
   }
+  var _showCalendar = false;
+
+  void showCalendar(){
+    setState(() {
+      selectedDay = DateTime.now();
+      focusedDay = DateTime.now();
+      makeRequest();
+      _showCalendar = !_showCalendar;
+    });
+  }
+
 
   @override
   void dispose() {
@@ -89,7 +100,34 @@ class ListResultsState extends State<ListResults> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: [
-        TableCalendar(
+        SizedBox(
+          height: 2,
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+          child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    "Historial",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 25, color: Colors.grey),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF4881B9),
+                    ),
+                  onPressed: (){showCalendar();},
+                  child: _showCalendar ? const Text('Ocultar Calendario'): const Text('Mostrar Calendario'),
+                ),
+
+              ]
+          ),
+        ),
+
+        _showCalendar ? TableCalendar(
           focusedDay: selectedDay,
           firstDay: DateTime(1990),
           lastDay: DateTime(2050),
@@ -156,16 +194,8 @@ class ListResultsState extends State<ListResults> {
               color: Colors.white,
             ),
           ),
-        ),
-        SizedBox(
-          height: 2,
-        ),
-        Container(
-          child: Text(
-            "Historial",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 25, color: Colors.grey),
-          ),
+        ):SizedBox(
+          height: 0,
         ),
         SizedBox(
           height: 2,

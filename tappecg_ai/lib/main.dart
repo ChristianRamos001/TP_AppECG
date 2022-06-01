@@ -22,13 +22,14 @@ class _AppStateState extends State<AppState> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => LoginFormProvider())],
-      child: const MyApp(),
+      child: MyApp(),
     );
   }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  final navigatorKey = GlobalKey<NavigatorState>();
 
   Future<String> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
             }
 
           }),
+        navigatorKey: navigatorKey
     );
   }
 }

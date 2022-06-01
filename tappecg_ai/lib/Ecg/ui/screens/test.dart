@@ -1,113 +1,95 @@
-import 'dart:async';
-import 'dart:io';
+
 
 import 'package:activity_recognition_flutter/activity_recognition_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+
+import '../../../config.dart';
+import '../../repository/notification_registration_service.dart';
 
 
 class ActivityRecognitionApp extends StatefulWidget {
   @override
   _ActivityRecognitionAppState createState() => _ActivityRecognitionAppState();
 }
+final notificationRegistrationService = NotificationRegistrationService(Config.backendServiceEndpoint, Config.apiKey);
 
 class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
-  StreamSubscription<ActivityEvent>? activityStreamSubscription;
-  List<ActivityEvent> _events = [];
-  ActivityRecognition activityRecognition = ActivityRecognition();
+  List<String> aux = [];
+  void registerButtonClicked() async {
+    try {
+      await notificationRegistrationService.registerDevice(aux);
+      await showAlert(message: "Device registered");
+    }
+    catch (e) {
+      await showAlert(message: e);
+    }
+  }
+
+  void deregisterButtonClicked() async {
+    try {
+      await notificationRegistrationService.deregisterDevice();
+      await showAlert(message: "Device deregistered");
+    }
+    catch (e) {
+      await showAlert(message: e);
+    }
+  }
+
+  Future<void> showAlert({ message: String }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('PushDemo'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   void initState() {
     super.initState();
-    _init();
-    _events.add(ActivityEvent.unknown());
   }
 
-  @override
-  void dispose() {
-    activityStreamSubscription?.cancel();
-    super.dispose();
-  }
 
-  void _init() async {
-    // Android requires explicitly asking permission
-    if (Platform.isAndroid) {
-      if (await Permission.activityRecognition.request().isGranted) {
-        _startTracking();
-      }
-    }
-
-    // iOS does not
-    else {
-      _startTracking();
-    }
-  }
-
-  void _startTracking() {
-    activityStreamSubscription = activityRecognition
-        .activityStream(runForegroundService: true)
-        .listen(onData, onError: onError);
-  }
-
-  void onData(ActivityEvent activityEvent) {
-    print(activityEvent);
-    setState(() {
-      _events.add(activityEvent);
-    });
-  }
-
-  void onError(Object error) {
-    print('ERROR - $error');
-  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Activity Recognition'),
-        ),
-        body: Center(
-          child: ListView.builder(
-              itemCount: _events.length,
-              reverse: true,
-              itemBuilder: (_, int idx) {
-                final activity = _events[idx];
-                return ListTile(
-                  leading: _activityIcon(activity.type),
-                  title: Text(
-                      '${activity.type.toString().split('.').last} (${activity.confidence}%)'),
-                  trailing: Text(activity.timeStamp
-                      .toString()
-                      .split(' ')
-                      .last
-                      .split('.')
-                      .first),
-                );
-              }),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            FlatButton(
+              child: Text("Register"),
+              onPressed: registerButtonClicked,
+            ),
+            FlatButton(
+              child: Text("Deregister"),
+              onPressed: deregisterButtonClicked,
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Icon _activityIcon(ActivityType type) {
-    switch (type) {
-      case ActivityType.WALKING:
-        return Icon(Icons.directions_walk);
-      case ActivityType.IN_VEHICLE:
-        return Icon(Icons.car_rental);
-      case ActivityType.ON_BICYCLE:
-        return Icon(Icons.pedal_bike);
-      case ActivityType.ON_FOOT:
-        return Icon(Icons.directions_walk);
-      case ActivityType.RUNNING:
-        return Icon(Icons.run_circle);
-      case ActivityType.STILL:
-        return Icon(Icons.cancel_outlined);
-      case ActivityType.TILTING:
-        return Icon(Icons.redo);
-      default:
-        return Icon(Icons.device_unknown);
-    }
-  }
 }

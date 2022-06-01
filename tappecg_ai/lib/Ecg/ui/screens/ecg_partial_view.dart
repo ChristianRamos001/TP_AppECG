@@ -104,6 +104,7 @@ class _EcgPartialView extends State<EcgPartialView> {
     polar.connectToDevice(identifier);
     setState(() {
       _startECG = true;
+      openDialog();
     });
   }
 
@@ -131,6 +132,29 @@ class _EcgPartialView extends State<EcgPartialView> {
       isCurved: false,
     );
   }
+
+  void submit() {
+    Navigator.of(context).pop();
+  }
+
+  Future openDialog() => showDialog(
+      context: context,
+      builder: (Context) => AlertDialog(
+        title: Text("¿Que sitomas presentas en este momento?"),
+        content: TextField(
+          keyboardType: TextInputType.multiline,
+          minLines: 3,//Normal textInputField will be displayed
+          maxLines: 8,
+          decoration: InputDecoration(border: OutlineInputBorder(),hintText: 'Ingrese sus sintomas'),
+        ),
+        actions: [
+          TextButton(onPressed: (){submit();}, child: Text('enviar'))
+        ],
+      ),
+  );
+
+
+
 
   @override
   void initState() {
@@ -313,28 +337,16 @@ class _EcgPartialView extends State<EcgPartialView> {
           )
         : !_startECG
             ? Container(
+                height: double.infinity,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Container(
                           child:
                               Text("Captura de Datos del Electrocardiograma")),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("1. Permanecer en Reposo"),
-                          Text("2. No mover el dispositivo durante la prueba"),
-                          Text(
-                              "3. Los datos proporcionados serán enviados en su Centro de Salud"),
-                          Text(
-                              "4. Los resultados serán visibles en el Hospital")
-                        ],
-                      ),
                     ),
                     Center(
                       child: Container(
@@ -356,28 +368,50 @@ class _EcgPartialView extends State<EcgPartialView> {
                   ],
                 ),
               )
-            : Scaffold(
-                appBar: AppBar(
-                  title: const Text('Activity Recognition'),
-                ),
-                body: Center(
-                  child: ListView.builder(
-                      itemCount: _events.length,
-                      reverse: true,
-                      itemBuilder: (_, int idx) {
-                        final activity = _events[idx];
-                        return ListTile(
-                          leading: _activityIcon(activity.type),
-                          title: Text(
-                              '${activity.type.toString().split('.').last} (${activity.confidence}%)'),
-                          trailing: Text(activity.timeStamp
-                              .toString()
-                              .split(' ')
-                              .last
-                              .split('.')
-                              .first),
-                        );
-                      }),
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _textState,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    _points.isNotEmpty
+                        ? SizedBox(
+                            height: 400,
+                            child: LineChart(
+                              LineChartData(
+                                minY: -1.5,
+                                maxY: 1.5,
+                                minX: _points.first.x,
+                                maxX: _points.last.x,
+                                lineTouchData: LineTouchData(enabled: false),
+                                clipData: FlClipData.all(),
+                                gridData: FlGridData(
+                                  show: true,
+                                  drawVerticalLine: false,
+                                ),
+                                lineBarsData: [
+                                  line(),
+                                ],
+                                titlesData: FlTitlesData(
+                                  show: true,
+                                  bottomTitles: SideTitles(
+                                    showTitles: false,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container()
+                  ],
                 ),
               );
   }
@@ -388,25 +422,5 @@ class _EcgPartialView extends State<EcgPartialView> {
     polar.disconnectFromDevice(identifier);
     super.dispose();
   }
-
-  Icon _activityIcon(ActivityType type) {
-    switch (type) {
-      case ActivityType.WALKING:
-        return Icon(Icons.directions_walk);
-      case ActivityType.IN_VEHICLE:
-        return Icon(Icons.car_rental);
-      case ActivityType.ON_BICYCLE:
-        return Icon(Icons.pedal_bike);
-      case ActivityType.ON_FOOT:
-        return Icon(Icons.directions_walk);
-      case ActivityType.RUNNING:
-        return Icon(Icons.run_circle);
-      case ActivityType.STILL:
-        return Icon(Icons.cancel_outlined);
-      case ActivityType.TILTING:
-        return Icon(Icons.redo);
-      default:
-        return Icon(Icons.device_unknown);
-    }
-  }
 }
+
