@@ -5,9 +5,10 @@ import 'package:tappecg_ai/Ecg/provider/login_form_provider.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  runApp(AppState());
+  initializeDateFormatting().then((_) => runApp(AppState()));
 }
 
 class AppState extends StatefulWidget {
