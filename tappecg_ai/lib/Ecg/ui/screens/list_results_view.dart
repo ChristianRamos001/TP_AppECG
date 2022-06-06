@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:tappecg_ai/Ecg/model/dates_abnormalities.dart';
 import 'package:tappecg_ai/Ecg/model/list_results_ecg.dart';
@@ -37,6 +38,18 @@ class ListResultsState extends State<ListResults> {
 
   Future<void> makeRequest() async {
     var items = recordecgs = await recordecgsRepository.getRecordecgs();
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.activityRecognition,
+      Permission.bluetooth,
+      Permission.bluetoothScan,
+      Permission.bluetoothConnect,
+    ].request();
+    print(statuses[Permission.location]);
+
+// You can can also directly ask the permission about its status.
+    if (await Permission.location.isRestricted) {
+      // The OS restricts access, for example because of parental controls.
+    }
 
     setState(() {
       isLoading = !isLoading;
@@ -121,27 +134,18 @@ class ListResultsState extends State<ListResults> {
           height: 2,
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-          child: Row(children: <Widget>[
+          padding: const EdgeInsets.fromLTRB(24, 5, 24, 0),
+          child: Row(
+              children: <Widget>[
             Expanded(
               child: Text(
                 "Historial",
                 textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 25, color: Colors.grey),
+                style: TextStyle(fontSize: 25, color: darkPrimaryColor),
               ),
             ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF4881B9),
-              ),
-              onPressed: () {
-                showCalendar();
-              },
-              child: _showCalendar
-                  ? const Text('Ocultar Calendario')
-                  : const Text('Mostrar Calendario'),
-            ),
+
+            IconButton(icon: Icon(Icons.calendar_month_rounded,color: darkPrimaryColor,), onPressed: () {showCalendar(); },)
           ]),
         ),
         _showCalendar
@@ -229,7 +233,7 @@ class ListResultsState extends State<ListResults> {
             : !isempty
                 ? Expanded(
                     child: ListView.builder(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.fromLTRB(16,5,16,16),
                         itemCount: recordecgs == null ? 0 : recordecgs.length,
                         itemBuilder: (BuildContext context, int i) {
                           return Center(

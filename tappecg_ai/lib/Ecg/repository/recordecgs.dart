@@ -30,7 +30,10 @@ class RecordecgsRepository {
         .map((item) => Recordecgs.fromMap(item))
         .toList()
         .cast<Recordecgs>();
-
+    String? aux1 = await prefs.getString('email');
+    String? aux2 = await prefs.getString('name');
+    UserHelper.email = await aux1;
+    UserHelper.name = await aux2;
     return recordecgs;
   }
 
@@ -77,5 +80,19 @@ class RecordecgsRepository {
         .cast<DatesAbnormalities>();
 
     return datesAbnormalities;
+  }
+
+  Future<Recordecg> getRecordecg(recordId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String aux = await prefs.getString('token') ?? "";
+    final response =
+    await http.get(Uri.parse(url + "RecordECGs/mobile/"+ recordId.toString()), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + aux
+    });
+    var items = json.decode(response.body);
+    var recordecgs = await Recordecg.fromMap(items);
+    return recordecgs;
   }
 }

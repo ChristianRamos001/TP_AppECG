@@ -40,8 +40,6 @@ class _FaqState extends State<Faq> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppbar(),
-        drawer: NavBar(),
         body: SingleChildScrollView(
           child: Column(children: [
             SizedBox(

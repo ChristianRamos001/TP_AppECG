@@ -10,11 +10,13 @@ class UserRepository{
   UserRepository(){}
   final String url = "https://app-api-ai-heart-mt-prod-eu2-01.azurewebsites.net/api/";
 
-  Future<void>saveToken(token) async{
+  Future<void>saveToken(token, email, name) async{
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', token);   
+      await prefs.setString('token', token);
+      await prefs.setString('email', email);
+      await prefs.setString('name', name);
   }
-                      
+
   Future<String> loginRequest(String email, String password) async {
 
     try{
@@ -30,12 +32,12 @@ class UserRepository{
 
 
     if(response.statusCode == 200){
-      
-      
       var extractData =  json.decode(response.body);
       UserHelper.token =  extractData["token"];
       UserHelper.email = email;
-      saveToken(extractData["token"]);
+      UserHelper.id = extractData["idusuario"];
+      UserHelper.name = extractData["nombre"];
+      saveToken(extractData["token"],email,UserHelper.name);
       //return extractData["token"];
       return  'success';
     }else {

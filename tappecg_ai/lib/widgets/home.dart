@@ -6,6 +6,7 @@ import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
 import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 
 import '../Ecg/ui/screens/ecg_partial_view.dart';
+import '../Ecg/ui/screens/faq.dart';
 import '../constants.dart';
 import 'custom_animated_bottom_bar.dart';
 
@@ -24,7 +25,7 @@ class _Home extends State<Home> {
   final List<Widget> widgetsChildren = [
     ListResults(),
     EcgPartialView(),
-    SendEcg(),
+    Faq(),
     SendEcg(),
   ];
 

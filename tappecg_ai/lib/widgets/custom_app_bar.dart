@@ -15,10 +15,9 @@ class CustomAppbar extends AppBar {
           ),
           elevation: 0.0,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.circle),
-              onPressed: () => null,
-            ),
+  Image(
+  image: AssetImage("assets/logo-menu.png"),
+  ),
           ],
         );
 }

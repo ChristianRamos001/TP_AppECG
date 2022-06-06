@@ -51,3 +51,36 @@ class Data {
 
 }
 
+class Recordecg {
+  final String id;
+  final String userID;
+  final DateTime readDate;
+  final List<double> data;
+  final String labelResult;
+  final String subLabel;
+  final String type;
+  final String commentUser;
+  Recordecg(this.id, this.userID, this.readDate, this.data, this.labelResult, this.subLabel, this.type, this.commentUser);
+
+  Recordecg.fromMap(Map<String, dynamic> item) :
+        id = item['id'],
+        userID = item['userID'],
+        readDate = DateTime.parse(item['readDate']),
+        labelResult = item['labelResult'],
+        data = item['data'].cast<double>(),
+        subLabel = item['subLabel'],
+        type = item['type'],
+        commentUser = item['commentUser'];
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'userID': userID,
+      'readDate': readDate,
+      'data': data,
+      'labelResult': labelResult,
+      'subLabel': subLabel
+    };
+  }
+}
+

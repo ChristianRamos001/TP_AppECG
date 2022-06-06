@@ -36,11 +36,14 @@ class MyApp extends StatelessWidget {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey('token')) {
       String? aux = await prefs.getString('token');
+      String? aux1 = await prefs.getString('email');
+      String? aux2 = await prefs.getString('name');
       UserHelper.token = await aux;
-      UserHelper.Introviewed = (await prefs.getBool('introviewed'))!;
-      return "succes";
+      UserHelper.email = await aux1;
+      UserHelper.name = await aux2;
+      return await "succes";
     }
-    return "null";
+    return await "null";
   }
 
   // This widget is the root of your application.

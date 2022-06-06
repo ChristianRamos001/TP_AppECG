@@ -48,6 +48,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     final loginForm =Provider.of<LoginFormProvider>(context);
     return Scaffold(
+      backgroundColor: primaryColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 100, 20, 50),
         child: SingleChildScrollView(
@@ -59,8 +60,7 @@ class _LoginViewState extends State<LoginView> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Container(
-                    height: MediaQuery.of(context).size.width*0.30,
-                    width: MediaQuery.of(context).size.width*0.30,
+                    height: MediaQuery.of(context).size.width*0.35,
                     child: FittedBox( child: Image(
                       image: AssetImage("assets/logo.png"),
                     ),
@@ -81,9 +81,10 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: Text(
                   'Por favor, ingrese una contraseña para continuar',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 15,
-                      color: Colors.grey
+                      color: Colors.white
                   ),
 
                 ),
@@ -102,6 +103,21 @@ class _LoginViewState extends State<LoginView> {
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
+                    prefixIcon: IconButton(icon: Icon(Icons.perm_contact_cal_rounded), onPressed: () {  },),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
                     hintText: 'Email'
                 ),
               ),
@@ -111,14 +127,42 @@ class _LoginViewState extends State<LoginView> {
                 controller: passwordController,
 
                 decoration: InputDecoration(
+                  prefixIcon: IconButton(icon: Icon(Icons.lock), onPressed: () {  },),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
+                    ),
                     hintText: 'Password',
-                    suffix: IconButton(icon: Icon(Icons.remove_red_eye),
+                    filled: true,
+                    fillColor: Colors.white,
+                    suffixIcon: IconButton(icon: Icon(Icons.remove_red_eye),
                       onPressed:()=>_toggle() ,)
                 ),
-
-
               ),
-              SizedBox(height: 40,),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '¿Olvidaste tu contraseña?',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 10,
+                        color: Colors.white
+                    ),
+
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,),
               GestureDetector(
                 onTap: (){
                   loginForm.isLoading=true;
@@ -132,8 +176,8 @@ class _LoginViewState extends State<LoginView> {
 
                 },
                 child: loginForm.isLoading? CircularProgressIndicator( color: Colors.blue,):Container(
-                  height: 50,
-                  width: 100,
+                  height: 40,
+                  width: 200,
                   decoration: BoxDecoration(
                       color: Color(0xFF4881B9),
                       borderRadius: BorderRadius.circular(10)
