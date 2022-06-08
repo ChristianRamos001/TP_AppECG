@@ -1,17 +1,14 @@
-
-
-import 'package:activity_recognition_flutter/activity_recognition_flutter.dart';
 import 'package:flutter/material.dart';
-
 import '../../../config.dart';
 import '../../repository/notification_registration_service.dart';
-
 
 class ActivityRecognitionApp extends StatefulWidget {
   @override
   _ActivityRecognitionAppState createState() => _ActivityRecognitionAppState();
 }
-final notificationRegistrationService = NotificationRegistrationService(Config.backendServiceEndpoint, Config.apiKey);
+
+final notificationRegistrationService = NotificationRegistrationService(
+    Config.backendServiceEndpoint, Config.apiKey);
 
 class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
   List<String> aux = [];
@@ -19,8 +16,7 @@ class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
     try {
       await notificationRegistrationService.registerDevice(aux);
       await showAlert(message: "Device registered");
-    }
-    catch (e) {
+    } catch (e) {
       await showAlert(message: e);
     }
   }
@@ -29,13 +25,12 @@ class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
     try {
       await notificationRegistrationService.deregisterDevice();
       await showAlert(message: "Device deregistered");
-    }
-    catch (e) {
+    } catch (e) {
       await showAlert(message: e);
     }
   }
 
-  Future<void> showAlert({ message: String }) async {
+  Future<void> showAlert({message: String}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -67,8 +62,6 @@ class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,5 +84,4 @@ class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
       ),
     );
   }
-
 }

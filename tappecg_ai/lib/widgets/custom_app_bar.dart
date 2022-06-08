@@ -15,9 +15,9 @@ class CustomAppbar extends AppBar {
           ),
           elevation: 0.0,
           actions: <Widget>[
-  Image(
-  image: AssetImage("assets/logo-menu.png"),
-  ),
+            Image(
+              image: AssetImage("assets/logo-menu.png"),
+            ),
           ],
         );
 }

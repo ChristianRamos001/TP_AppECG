@@ -32,17 +32,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^0.13.4
-  polar: ^1.15.0
+  polar: 
+    git:
+      url: https://github.com/ChristianRamos001/polar
   fl_chart: ^0.40.2
   intl: ^0.17.0
   provider: ^6.0.2
   syncfusion_flutter_charts: ^20.1.52
   shared_preferences: ^2.0.15
   intro_slider: ^3.0.4
-  activity_recognition_flutter: ^4.2.0
   table_calendar: ^3.0.5
   permission_handler: ^9.2.0
   flutter_secure_storage: ^5.0.2
+  flutter_foreground_task: ^3.7.3
 
 dev_dependencies:
   flutter_test:

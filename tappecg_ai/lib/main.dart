@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting().then((_) => runApp(AppState()));
 }
 
@@ -50,26 +51,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: FutureBuilder<String>(
-          future: getToken(),
-          builder: (context, snapshot) {
-            if(snapshot.hasData){
-              if (snapshot.data == "succes") {
-                return const Home();
+        //title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: FutureBuilder<String>(
+            future: getToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data == "succes") {
+                  return const Home();
+                } else {
+                  return LoginView();
+                }
               } else {
                 return LoginView();
               }
-            }
-            else {
-              return LoginView();
-            }
-
-          }),
-        navigatorKey: navigatorKey
-    );
+            }),
+        navigatorKey: navigatorKey);
   }
 }

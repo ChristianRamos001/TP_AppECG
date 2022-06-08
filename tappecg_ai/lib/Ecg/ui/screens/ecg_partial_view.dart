@@ -1,30 +1,18 @@
-//import 'dart:io';
-
 import 'dart:async';
-
-import 'package:activity_recognition_flutter/activity_recognition_flutter.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart' show rootBundle;
 import 'package:polar/polar.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
-import 'dart:math';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:tappecg_ai/constants.dart';
-
 import 'dart:io';
-
 import 'package:permission_handler/permission_handler.dart';
-
-import '../../model/user.dart';
 
 class EcgPartialView extends StatefulWidget {
   EcgPartialView({Key? key}) : super(key: key);
-
   @override
   _EcgPartialView createState() => _EcgPartialView();
 }
@@ -34,11 +22,10 @@ class _EcgPartialView extends State<EcgPartialView> {
   final _points = <FlSpot>[];
   double _xValue = 0;
   double _step = 0.03;
-  bool _firstTime = true;
   final Color _colorLine = Colors.redAccent;
 
   Polar polar = Polar();
-
+  bool _firstTime = true;
   static const identifier = '7E1B542A';
   String _textState =
       "Active el Bluetooth y colóquese el dispositivo en el pecho para empezar por favor";
@@ -48,9 +35,6 @@ class _EcgPartialView extends State<EcgPartialView> {
   RepositoryECG respositoryECG = RepositoryECG();
 
   List<int> _joinedECGdata = <int>[];
-  StreamSubscription<ActivityEvent>? activityStreamSubscription;
-  List<ActivityEvent> _events = [];
-  ActivityRecognition activityRecognition = ActivityRecognition();
 
   void startECG() {
     polar.deviceConnectingStream.listen((_) => setState(() {
@@ -104,7 +88,7 @@ class _EcgPartialView extends State<EcgPartialView> {
     polar.connectToDevice(identifier);
     setState(() {
       _startECG = true;
-      openDialog();
+      //openDialog();
     });
   }
 
@@ -138,29 +122,29 @@ class _EcgPartialView extends State<EcgPartialView> {
   }
 
   Future openDialog() => showDialog(
-      context: context,
-      builder: (Context) => AlertDialog(
-        title: Text("¿Que sitomas presentas en este momento?"),
-        content: TextField(
-          keyboardType: TextInputType.multiline,
-          minLines: 3,//Normal textInputField will be displayed
-          maxLines: 8,
-          decoration: InputDecoration(border: OutlineInputBorder(),hintText: 'Ingrese sus sintomas'),
+        context: context,
+        builder: (Context) => AlertDialog(
+          title: Text("¿Que sitomas presentas en este momento?"),
+          content: TextField(
+            keyboardType: TextInputType.multiline,
+            minLines: 3, //Normal textInputField will be displayed
+            maxLines: 8,
+            decoration: InputDecoration(
+                border: OutlineInputBorder(), hintText: 'Ingrese sus sintomas'),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  submit();
+                },
+                child: Text('enviar'))
+          ],
         ),
-        actions: [
-          TextButton(onPressed: (){submit();}, child: Text('enviar'))
-        ],
-      ),
-  );
-
-
-
+      );
 
   @override
   void initState() {
     super.initState();
-    _init();
-    _events.add(ActivityEvent.unknown());
     slides.add(
       Slide(
         title: "Reposo",
@@ -240,33 +224,6 @@ class _EcgPartialView extends State<EcgPartialView> {
       ),
     );
     //startECG();
-  }
-
-  void _init() async {
-    // Android requires explicitly asking permission
-    if (Platform.isAndroid) {
-      if (await Permission.activityRecognition.request().isGranted) {
-        _startTracking();
-      }
-    }
-
-    // iOS does not
-    else {
-      _startTracking();
-    }
-  }
-
-  void _startTracking() {
-    activityStreamSubscription = activityRecognition
-        .activityStream(runForegroundService: true)
-        .listen(onData, onError: onError);
-  }
-
-  void onData(ActivityEvent activityEvent) {
-    print(activityEvent);
-    setState(() {
-      _events.add(activityEvent);
-    });
   }
 
   void onError(Object error) {
@@ -418,9 +375,7 @@ class _EcgPartialView extends State<EcgPartialView> {
 
   @override
   void dispose() {
-    activityStreamSubscription?.cancel();
     polar.disconnectFromDevice(identifier);
     super.dispose();
   }
 }
-

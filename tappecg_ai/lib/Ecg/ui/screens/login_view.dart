@@ -58,15 +58,16 @@ class _LoginViewState extends State<LoginView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.10,
+                height: MediaQuery.of(context).size.height * 0.15,
                 child: Align(
                   alignment: Alignment.center,
                   child: Container(
-                    height: MediaQuery.of(context).size.width * 0.20,
+                    height: MediaQuery.of(context).size.width * 0.30,
                     child: FittedBox(
                         child: Image(
-                          image: AssetImage("assets/logo.png"),
-                        ),
+                            image: AssetImage("assets/logo.png"),
+                            width: 300,
+                            height: 200),
                         fit: BoxFit.fill),
                   ),
                 ),
