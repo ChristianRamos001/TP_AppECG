@@ -90,7 +90,7 @@ class MyTaskHandler extends TaskHandler {
         await FlutterForegroundTask.getData<String>(key: 'customData');
     print('customData: $customData');
     startECG();
-    print("INICIO ALGO");
+    print("init");
   }
 
   @override
@@ -104,7 +104,7 @@ class MyTaskHandler extends TaskHandler {
     //startECG();
     _eventCount++;
     startECG();
-    print("Sera?");
+    print("mmm");
   }
 
   @override
@@ -164,7 +164,6 @@ class ListResultsState extends State<ListResults> {
       Permission.bluetoothScan,
       Permission.bluetoothConnect,
       Permission.locationWhenInUse,
-      Permission.locationAlways,
     ].request();
     print(statuses[Permission.location]);
 

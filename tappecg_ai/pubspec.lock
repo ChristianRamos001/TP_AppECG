@@ -397,11 +397,9 @@ packages:
   polar:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f849c6153e467d40982eedb5fe4654944fdc50fd
-      url: "https://github.com/ChristianRamos001/polar"
-    source: git
+      name: polar
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.17.0"
   process:
     dependency: transitive

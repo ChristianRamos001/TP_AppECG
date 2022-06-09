@@ -32,9 +32,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^0.13.4
-  polar: 
-    git:
-      url: https://github.com/ChristianRamos001/polar
+  polar: ^1.17.0
   fl_chart: ^0.40.2
   intl: ^0.17.0
   provider: ^6.0.2

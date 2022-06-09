@@ -142,7 +142,6 @@ class _Home extends State<Home> {
     ListResults(),
     EcgPartialView(),
     SendEcg(),
-    SendEcg(),
   ];
 
   void onTapTapped(int index) {
@@ -318,13 +317,6 @@ class _Home extends State<Home> {
           inactiveColor: darkPrimaryColor,
           textAlign: TextAlign.center,
         ),
-        BottomNavyBarItem(
-          icon: const Icon(Icons.watch),
-          title: const Text('Dispositivo'),
-          activeColor: colorIcon,
-          inactiveColor: darkPrimaryColor,
-          textAlign: TextAlign.center,
-        ),
       ],
     );
   }
@@ -349,13 +341,6 @@ class _Home extends State<Home> {
         alignment: Alignment.center,
         child: const Text(
           "3",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-      ),
-      Container(
-        alignment: Alignment.center,
-        child: const Text(
-          "4",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
