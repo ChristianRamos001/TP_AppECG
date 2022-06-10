@@ -39,9 +39,11 @@ class MyApp extends StatelessWidget {
       String? aux = await prefs.getString('token');
       String? aux1 = await prefs.getString('email');
       String? aux2 = await prefs.getString('name');
+      String? aux3 = await prefs.getString('id');
       UserHelper.token = await aux;
       UserHelper.email = await aux1;
       UserHelper.name = await aux2;
+      UserHelper.id = await aux3;
       return await "succes";
     }
     return await "null";

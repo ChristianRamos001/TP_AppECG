@@ -15,6 +15,8 @@ import 'package:polar/polar.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
 
+import '../../model/user.dart';
+
 class ListResults extends StatefulWidget {
   @override
   ListResultsState createState() => ListResultsState();
@@ -75,7 +77,7 @@ class MyTaskHandler extends TaskHandler {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
 
-    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
+    _sendECGModel = SendECG(UserHelper.id, _joinedECGdata, DateTime.now());
     var response = await respositoryECG.postECGData(_sendECGModel);
     //bool correct = true;
     print(response.toString());
@@ -152,13 +154,13 @@ class ListResultsState extends State<ListResults> {
 
   initState() {
     selectedEvents = {};
-    this.getDatesAbnormalities();
-    this.makeRequest();
+    getDatesAbnormalities();
+    makeRequest();
     super.initState();
   }
 
   Future<void> makeRequest() async {
-    var items = recordecgs = await recordecgsRepository.getRecordecgs();
+    var items = await recordecgsRepository.getRecordecgs();
     Map<Permission, PermissionStatus> statuses = await [
       Permission.bluetooth,
       Permission.bluetoothScan,
@@ -173,7 +175,7 @@ class ListResultsState extends State<ListResults> {
     }
 
     setState(() {
-      isLoading = !isLoading;
+      isLoading = false;
       recordecgs = items;
       print(items.length);
       if (items.length < 1) {
