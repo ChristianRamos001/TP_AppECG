@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tappecg_ai/Ecg/model/user.dart';
 import 'package:tappecg_ai/Ecg/provider/login_form_provider.dart';
 import 'package:tappecg_ai/Ecg/repository/user_repository.dart';
+import 'package:tappecg_ai/Ecg/ui/screens/register_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/reset_password.dart';
 import 'package:tappecg_ai/main.dart';
 import 'package:tappecg_ai/widgets/home.dart';
@@ -169,6 +170,29 @@ class _LoginViewState extends State<LoginView> {
                     },
                     child: Text(
                       '¿Olvidaste tu contraseña?',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Register()));
+                    },
+                    child: Text(
+                      '¿Nuevo usuario?',
                       textAlign: TextAlign.right,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,

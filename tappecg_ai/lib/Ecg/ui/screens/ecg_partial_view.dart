@@ -11,6 +11,8 @@ import 'package:tappecg_ai/constants.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../model/user.dart';
+
 class EcgPartialView extends StatefulWidget {
   EcgPartialView({Key? key}) : super(key: key);
   @override
@@ -102,7 +104,7 @@ class _EcgPartialView extends State<EcgPartialView> {
 
   void sentToCloud() async {
     print('ECG data FINAL: ${_joinedECGdataTemp.length}');
-    _sendECGModel = SendECG("12", _joinedECGdataTemp, _dateSend);
+    _sendECGModel = SendECG(UserHelper.id, _joinedECGdata, _dateSend);
     var response = await respositoryECG.postECGData(_sendECGModel);
     //bool correct = true;
     print(response.toString());

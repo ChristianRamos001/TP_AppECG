@@ -2,6 +2,7 @@ import 'dart:isolate';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 
 import 'package:flutter/material.dart';
+import 'package:tappecg_ai/Ecg/model/user.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/ecg_partial_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/list_results_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/send_ecg.dart';
@@ -11,6 +12,8 @@ import 'package:polar/polar.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/repository/repository_ecg.dart';
 import 'dart:async';
+import '../Ecg/ui/screens/faq.dart';
+import '../Ecg/ui/screens/navbar.dart';
 import '../constants.dart';
 import 'custom_animated_bottom_bar.dart';
 
@@ -69,7 +72,7 @@ class MyTaskHandler extends TaskHandler {
     print('ECG data FINAL: ${_joinedECGdata.length}');
     DateTime currentDatetime = DateTime.now();
 
-    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
+    _sendECGModel = SendECG(UserHelper.id, _joinedECGdata, DateTime.now());
     var response = await respositoryECG.postECGData(_sendECGModel);
     //bool correct = true;
     print(response.toString());
@@ -141,7 +144,7 @@ class _Home extends State<Home> {
   final List<Widget> widgetsChildren = [
     ListResults(),
     EcgPartialView(),
-    SendEcg(),
+    Faq(),
   ];
 
   void onTapTapped(int index) {
@@ -155,6 +158,7 @@ class _Home extends State<Home> {
   void initState() {
     super.initState();
     print("INIT******************************+");
+    print("ID: "+UserHelper.id);
     //_initForegroundTask();
     //_ambiguate(WidgetsBinding.instance)?.addPostFrameCallback((_) async {
     // You can get the previous ReceivePort without restarting the service.
@@ -280,6 +284,7 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppbar(),
+        drawer: NavBar(),
         body: widgetsChildren[_currentIndex],
         bottomNavigationBar: _buildBottomBar());
   }

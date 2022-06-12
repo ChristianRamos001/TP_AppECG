@@ -7,6 +7,7 @@ import 'package:tappecg_ai/Ecg/ui/screens/login_view.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/test.dart';
 import 'package:tappecg_ai/constants.dart';
 import 'package:tappecg_ai/widgets/home.dart';
+
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
 
@@ -21,39 +22,37 @@ class _NavBar extends State<NavBar> {
   }
 
   Future openDialog() => showDialog(
-    context: context,
-    builder: (Context) => AlertDialog(
-      title: Text("¿Estas Seguro que desea cerrar sesión?",style: TextStyle(
-          color: primaryColor
-      )),
-      content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Color(0xFF4881B9),
-          ),
-          onPressed: () {
-            removeToken().then((value) => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => LoginView())));
-          },
-          child: const Text('Aceptar'),
+        context: context,
+        builder: (Context) => AlertDialog(
+          title: Text("¿Estas Seguro que desea cerrar sesión?",
+              style: TextStyle(color: primaryColor)),
+          content: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF4881B9),
+                  ),
+                  onPressed: () {
+                    removeToken().then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => LoginView())));
+                  },
+                  child: const Text('Aceptar'),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancelar'),
+                ),
+              ]),
         ),
-
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.red,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Cancelar'),
-        ),      ]),
-
-    ),
-  );
+      );
 
   var name;
 
@@ -63,8 +62,8 @@ class _NavBar extends State<NavBar> {
     setState(() {
       name = aux;
     });
-
   }
+
   @override
   void initState() {
     name = getName();
@@ -80,7 +79,8 @@ class _NavBar extends State<NavBar> {
             color: primaryColor,
           ),
           accountName: Text('Hola,'),
-          accountEmail: UserHelper.name != null ? Text(name.toString()):Text(''),
+          accountEmail:
+              UserHelper.name != null ? Text(name.toString()) : Text(''),
           currentAccountPicture: CircleAvatar(
               child: ClipOval(
                   child: Image(
