@@ -35,6 +35,8 @@ class _EcgPartialView extends State<EcgPartialView> {
   RepositoryECG respositoryECG = RepositoryECG();
 
   List<int> _joinedECGdata = <int>[];
+  List<int> _joinedECGdataTemp = <int>[];
+  DateTime _dateSend = DateTime.now();
 
   void startECG() {
     polar.deviceConnectingStream.listen((_) => setState(() {
@@ -51,6 +53,7 @@ class _EcgPartialView extends State<EcgPartialView> {
       if (e.features.contains(DeviceStreamingFeature.ecg)) {
         polar.startEcgStreaming(e.identifier).listen((e) {
           if (_firstTime) {
+            _dateSend = DateTime.now();
             currentTimestamp = e.timeStamp;
             _firstTime = false;
           }
@@ -65,9 +68,14 @@ class _EcgPartialView extends State<EcgPartialView> {
             _xValue += _step;
           }
           print('ECG TIME: ${e.timeStamp}');
-          if ((e.timeStamp - currentTimestamp) / 1000000000 >= 30) {
+          if ((e.timeStamp - currentTimestamp) / 1000000000 >= 60) {
             // 1 minuto/ 30 segundos
-            polar.disconnectFromDevice(identifier);
+            //polar.disconnectFromDevice(identifier);
+            _joinedECGdataTemp = <int>[];
+            _joinedECGdataTemp = _joinedECGdata;
+            sentToCloud();
+            _firstTime = true;
+            _joinedECGdata = <int>[];
           }
 
           setState(() {
@@ -79,7 +87,7 @@ class _EcgPartialView extends State<EcgPartialView> {
     });
 
     polar.deviceDisconnectedStream.listen((_) {
-      sentToCloud();
+      //sentToCloud();
       setState(() {
         _textState = "Prueba completada";
       });
@@ -93,10 +101,8 @@ class _EcgPartialView extends State<EcgPartialView> {
   }
 
   void sentToCloud() async {
-    print('ECG data FINAL: ${_joinedECGdata.length}');
-    DateTime currentDatetime = DateTime.now();
-
-    _sendECGModel = SendECG("12", _joinedECGdata, DateTime.now());
+    print('ECG data FINAL: ${_joinedECGdataTemp.length}');
+    _sendECGModel = SendECG("12", _joinedECGdataTemp, _dateSend);
     var response = await respositoryECG.postECGData(_sendECGModel);
     //bool correct = true;
     print(response.toString());
