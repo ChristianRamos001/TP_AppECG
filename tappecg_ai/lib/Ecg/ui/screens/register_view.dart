@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tappecg_ai/Ecg/ui/screens/navbar.dart';
 import 'package:tappecg_ai/constants.dart';
 import 'package:tappecg_ai/widgets/custom_app_bar.dart';
 
+import '../../model/register_user.dart';
+import '../../provider/login_form_provider.dart';
+import '../../repository/user_repository.dart';
 import 'login_view.dart';
 
 class Register extends StatefulWidget {
@@ -13,6 +17,26 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController nombreController = TextEditingController();
+  TextEditingController apellidoPController = TextEditingController();
+  TextEditingController apellidoMController = TextEditingController();
+  TextEditingController fechaNacimientoController = TextEditingController();
+  TextEditingController dniController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+  bool isLoading = false;
+
+  final userRepository = UserRepository();
+
+  Future<void> register(String nombre, String apellidoP, String apellidoM,
+      String fechaNacimiento, String dni, String email) async {
+    RegisterUser user = new RegisterUser(
+        nombre, apellidoP, apellidoM, fechaNacimiento, int.parse(dni), email);
+    if (await userRepository.registerUserRequest(user) == "success") {
+      openDialog();
+    } else {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +78,8 @@ class _RegisterState extends State<Register> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextFormField(
-                keyboardType: TextInputType.number,
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -79,7 +104,8 @@ class _RegisterState extends State<Register> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextFormField(
-                keyboardType: TextInputType.number,
+                controller: nombreController,
+                keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -104,7 +130,8 @@ class _RegisterState extends State<Register> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextFormField(
-                keyboardType: TextInputType.number,
+                controller: apellidoMController,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -129,7 +156,8 @@ class _RegisterState extends State<Register> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextFormField(
-                keyboardType: TextInputType.number,
+                controller: apellidoPController,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -154,7 +182,8 @@ class _RegisterState extends State<Register> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextFormField(
-                keyboardType: TextInputType.number,
+                controller: fechaNacimientoController,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -179,6 +208,7 @@ class _RegisterState extends State<Register> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextFormField(
+                controller: dniController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
@@ -200,20 +230,40 @@ class _RegisterState extends State<Register> {
             ),
           ),
           GestureDetector(
-            onTap: () {openDialog();},
-            child: Container(
-              height: 40,
-              width: 200,
-              decoration: BoxDecoration(
-                  color: Color(0xFF4881B9),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Center(
-                child: Text(
-                  'Continuar',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
+            onTap: () {
+              setState(() {
+                isLoading = true;
+              });
+              register(
+                      nombreController.text,
+                      apellidoPController.text,
+                      apellidoMController.text,
+                      fechaNacimientoController.text,
+                      dniController.text,
+                      emailController.text)
+                  .then(
+                (value) => setState(() {
+                  isLoading = false;
+                }),
+              );
+            },
+            child: isLoading
+                ? CircularProgressIndicator(
+                    color: Colors.blue,
+                  )
+                : Container(
+                    height: 40,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        color: Color(0xFF4881B9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Text(
+                        'Continuar',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
           ),
         ]),
       ),
@@ -221,41 +271,39 @@ class _RegisterState extends State<Register> {
   }
 
   Future openDialog() => showDialog(
-    context: context,
-    builder: (Context) => AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Text("Su usuario ha sido creado satisfactoriamente",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: primaryColor)),
+        context: context,
+        builder: (Context) => AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Text("Su usuario ha sido creado satisfactoriamente",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: primaryColor)),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(primary: Color(0xFF4881B9)),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    LoginView()));
+                      },
+                      child: const Text('Continuar'),
+                    ),
+                  ]),
+            ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF4881B9)
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                        builder: (BuildContext context) => LoginView()));
-                  },
-                  child: const Text('Continuar'),
-                ),
-              ]),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }

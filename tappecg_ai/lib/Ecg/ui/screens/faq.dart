@@ -24,16 +24,16 @@ class Item {
 class _FaqState extends State<Faq> {
   List<Item> faqs = [
     Item(
-      expandedValue: "¿Puedo realizar conexion con otros dispositivos werables?",
-      headerValue: 'No, solo puede realizarse con el werable ¨polar H10¨ ',
+      headerValue: "¿Puedo realizar conexion con otros dispositivos werables?",
+      expandedValue: 'No, solo puede realizarse con el werable ¨polar H10¨ ',
     ),
     Item(
-      expandedValue: "¿La aplicaciòn manda informaciòn a un solo mèdico?",
-      headerValue: "Manda el resultado de sus ECG's a todos los médicos que le fueron asignados",
+      headerValue: "¿La aplicaciòn manda informaciòn a un solo mèdico?",
+      expandedValue: "Manda el resultado de sus ECG's a todos los médicos que le fueron asignados",
     ),
     Item(
-      expandedValue: "¿Que debo hacer si tengo una lectura anormal?",
-      headerValue: 'Debe acudir a su medico para realizar pruebas de descarte inmediatamente ',
+      headerValue: "¿Que debo hacer si tengo una lectura anormal?",
+      expandedValue: 'Debe acudir a su medico para realizar pruebas de descarte inmediatamente ',
     ),
   ];
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tappecg_ai/Ecg/model/send_ecg.dart';
 import 'package:tappecg_ai/Ecg/model/user.dart';
 import 'dart:convert';
+import '../model/register_user.dart';
 import 'event_hub_api.dart';
 import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +45,29 @@ class UserRepository{
     }else {
       return 'failed';
     }
+    }catch(e){
+      return e.toString();
+    }
+  }
+
+  Future<String> registerUserRequest(RegisterUser user) async {
+
+
+
+    try{
+      final response = await http.post(
+        Uri.parse(url + "Pacientes"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(user.toMap()),
+      );
+      if(response.statusCode == 200){
+        return  'success';
+      }else {
+        return 'failed';
+      }
     }catch(e){
       return e.toString();
     }
