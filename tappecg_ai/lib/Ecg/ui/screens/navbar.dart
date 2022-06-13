@@ -8,6 +8,8 @@ import 'package:tappecg_ai/Ecg/ui/screens/test.dart';
 import 'package:tappecg_ai/constants.dart';
 import 'package:tappecg_ai/widgets/home.dart';
 
+import 'hospitals_view.dart';
+
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
 
@@ -98,13 +100,13 @@ class _NavBar extends State<NavBar> {
         },
       ),
       ListTile(
-        leading: Icon(Icons.person),
+        leading: Icon(Icons.local_hospital),
         title: Text('Centro de Salud'),
         onTap: () {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => ActivityRecognitionApp()));
+                  builder: (BuildContext context) => Hospital()));
         },
       ),
       ListTile(
